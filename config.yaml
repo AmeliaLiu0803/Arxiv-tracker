@@ -1,12 +1,15 @@
-categories: ["cs.CV", "cs.LG", "cs.AI"]
+categories: ["cs.AI", "cs.MA", "cs.NE", "cs.RO", "cs.LG", "cs.DS", "cs.ML"]
 keywords:
-  - "open vocabulary"
-  - "open-vocabulary"
-  - "open vocabulary segmentation"
-  - "open-vocabulary segmentation"
-  - "vision language model"
-  - "training-free"
-  - "training free"
+  - "genetic programming"
+  - "multi-agent"
+  - "multi-agent system"
+  - "combinatorial optimization"
+  - "warehouse automation"
+  - "scheduling problem"
+  - "AGV"
+  - "large language model"
+  - "LLM for optimization"
+  - "neural combinatorial optimization"
 
 # exclude_keywords: # 选择排除的关键词
 #   - "Large Language Model"
