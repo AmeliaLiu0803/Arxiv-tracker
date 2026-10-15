@@ -1,0 +1,893 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arXiv 论文速递</title><style>
+:root {
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#667085; --border:#e5e7eb; --acc:#2563eb;
+}
+:root[data-theme="dark"] {
+  --bg:#0b0f17; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --acc:#2563eb;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;}
+.container{max-width:900px;margin:0 auto;padding:18px;}
+.header{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:8px 0 16px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.badge{font-size:12px;color:#111827;background:var(--acc);padding:2px 8px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.title{font-weight:700;margin:0 0 6px 0;font-size:18px}
+.meta-line{color:var(--muted);font-size:13px;margin:2px 0}
+.links a{color:var(--acc);text-decoration:none;margin-right:12px}
+.detail{margin-top:10px;background:rgba(2,6,23,.03);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+summary{cursor:pointer;color:var(--acc)}
+.mono{white-space:pre-wrap;background:rgba(2,6,23,.03);border:1px solid var(--border);padding:10px;border-radius:10px}
+.row{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width: 860px) {
+  .row-2{grid-template-columns:1fr 1fr}
+}
+.footer{color:var(--muted);font-size:13px;margin:20px 0 10px}
+.hr{height:1px;background:var(--border);margin:14px 0}
+.history-list a{display:block;color:var(--acc);text-decoration:none;margin:4px 0}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:10px;cursor:pointer;color:var(--text)}
+.btn:hover{border-color:var(--acc)}
+</style>
+<script>
+(function() {
+  const root = document.documentElement;
+  function apply(t) {
+    if (t==='dark') root.setAttribute('data-theme','dark');
+    else if (t==='light') root.removeAttribute('data-theme');
+    else {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+  }
+  let t = localStorage.getItem('theme') || 'light';
+  if (!['light','dark','auto'].includes(t)) t='light';
+  apply(t);
+  window.__toggleTheme = function() {
+    let cur = localStorage.getItem('theme') || 'light';
+    if (cur==='light') cur='dark';
+    else if (cur==='dark') cur='auto';
+    else cur='light';
+    localStorage.setItem('theme', cur);
+    apply(cur);
+    const el=document.getElementById('theme-label');
+    if(el) el.textContent = cur.toUpperCase();
+  }
+  window.__expandAll = function(open) {
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+})();
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>arXiv 论文速递</h1>
+      <div style="display:flex;gap:10px;align-items:center">
+        
+<div class="controls">
+  <button class="btn" onclick="__toggleTheme()">Theme: <span id="theme-label" style="margin-left:6px">AUTO</span></button>
+  <button class="btn" onclick="__expandAll(true)">Expand All</button>
+  <button class="btn" onclick="__expandAll(false)">Collapse All</button>
+</div>
+
+        <span class="badge">2026-10-16 05:58</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div>Snapshot: 20261016_0558</div>
+    <div class="row"><div class="card">
+<div class="title">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</div>
+<div class="meta-line">Authors: Shaoyuan Xie, Zihan Zhang, Jingxuan Wang, Jiashu Qu, Xiaoqing Liang, Lingdong Kong, Junchi Lu, Henrik I. Christensen, Qi Alfred Chen</div>
+<div class="meta-line">Venue: CoRL 2026</div>
+<div class="meta-line">First: 2026-10-14T17:59:56+00:00 · Latest: 2026-10-14T17:59:56+00:00</div>
+<div class="meta-line">Comments: Accepted at CoRL 2026. Project page: https://safedrive-vla.github.io/SafeDriveVLA/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20609v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20609v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://safedrive-vla.github.io/SafeDriveVLA/">Project1</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Vision-Language-Action (VLA) models are gaining attention in autonomous driving, inheriting commonsense priors from large language models (LLMs) and widening the navigation interface from a fixed command set to free-form natural-language instructions. However, this open-ended interface exposes a new vulnerability surface: an inattentive driver may issue instructions that are unsafe given the current scene, and a malicious user may issue dangerous ones on purpose. We present the first benchmark suite that evaluates navigation following and conflict awareness together, along with adversarial robustness. Existing VLAs fall short on both: SimLingo completes no language-instructed lane change in closed loop, and all models degrade sharply under conflicting signals. We propose SafeDriveVLA, the first driving VLA that (1) explicitly predicts a three-level navigation-compliance mode to decouple conflict reasoning from action generation, and (2) uses navigation-conditioned world model dreaming to inform this prediction. Unlike prior world models that roll out expert or planned actions, ours dreams of strictly following the navigation signal, showing when following is safe. SafeDriveVLA reaches 88.16 Driving Score (DS) and 68.64% Success Rate (SR) on Bench2Drive, lifts closed-loop language following by 49.3% and reduces collisions under unsafe instructions from 60 to 38 compared to the best SimLingo variant. Video demonstrations are available on our project page.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Vision-Language-Action (VLA) models are gaining attention in autonomous driving, inheriting commonsense priors from large language models (LLMs) and widening the navigation interface from a fixed command set to free-form natural-language instructions.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">PhySGA: A Physics-Space Grounded Agentic Framework for Generalizable and Interactive 3D Composition</div>
+<div class="meta-line">Authors: Weichen Lyu, Chong Xia, Mingyu Dong, Long Xu, Shengjun Zhang, Yueqi Duan</div>
+<div class="meta-line">First: 2026-10-14T17:47:24+00:00 · Latest: 2026-10-14T17:47:24+00:00</div>
+<div class="meta-line">Comments: Project Page: https://agenticei.github.io/PhySGA-page/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20560v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20560v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://agenticei.github.io/PhySGA-page/">Project1</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">3D object composition is pivotal to digital content creation and robot simulation, while also serving as a critical testbed for physical intelligence in foundation models. Previous methods either leverage large language models to directly predict object coordinates, or utilize generative diffusion priors to synthesize composite images for visual alignment, both of which rely on static priors in digital spaces. However, these methods consistently struggle with complex compositions such as precise hanging, gravity-driven settling and hidden containment, as these tasks require interactive construction processes involving global planning, fine-grained alignment, and physical simulation. To address these challenges, we propose PhySGA, a Physics-Space Grounded Agentic Framework for 3D composition via agent exploration and physical simulation, enabling the universal interactive assembly of rigid, articulated, and deformable objects. Directly applying vanilla LLMs or VLMs to this task proves insufficient, as current models inherently lack grounded physical understanding and interactive construction experience. To overcome this limitation, we design a collaborative feedforward-feedback architecture: an Assembly Agent focuses on geometric and kinematic reasoning for global step planning and coarse adjustment, while a Critic Agent reasons over contact dynamics for simulator state diagnosis and fine-grained closed-loop correction. Furthermore, Action Routers map semantic planning and analysis onto executable physical primitives within the simulator, while a task-specific Self-Evolving Skill Library distills historical trial-and-error feedback into reusable experiences, boosting success rates and minimizing exploration attempts. Extensive experiments within Isaac Sim demonstrate that PhySGA significantly surpasses existing methods in relation fidelity, physical plausibility, and visual quality.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">3D object composition is pivotal to digital content creation and robot simulation, while also serving as a critical testbed for physical intelligence in foundation models.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">PerSo: Investigating Facets of LLMs&#x27; Social Intelligence in Real-World Persuasion Scenarios</div>
+<div class="meta-line">Authors: Ali Zamani, Soroush Esfahanian, Erfan Shahabi, Mohammad Taher Pilehvar, Azadeh Shakery, Yadollah Yaghoobzadeh</div>
+<div class="meta-line">First: 2026-10-14T17:39:35+00:00 · Latest: 2026-10-14T17:39:35+00:00</div>
+<div class="meta-line">Comments: 25 pages, 17 figures, 10 tables. Ali Zamani and Soroush Esfahanian contributed equally</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20548v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20548v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Understanding the social intelligence of large language models (LLMs) is increasingly important for applications involving human-AI interaction and multi-agent environments. Social intelligence comprises two aspects: cognitive intelligence, the ability to infer others&#x27; mental states, and behavioral intelligence, the ability to select appropriate social actions based on these inferences to achieve social goals. Persuasion provides a natural testbed in which both aspects are simultaneously at play, yet prior benchmarks typically evaluate them in isolation using synthetic scenarios. We introduce PerSo, a benchmark that evaluates both aspects on real-world persuasion dialogues from Reddit&#x27;s ChangeMyView community, using an LLM-in-the-loop pipeline to construct the evaluation tasks, validated through human annotation. Our evaluation of diverse LLMs shows that performance generally scales with model size but varies across dimensions. The strongest LLM slightly surpasses the best observed human performance on the behavioral task, while the best human participant remains ahead on the cognitive task.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Understanding the social intelligence of large language models (LLMs) is increasingly important for applications involving human-AI interaction and multi-agent environments.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SkillCommit: Evolving Agent Skills through Behaviorally Validated Scope Expansion</div>
+<div class="meta-line">Authors: Yu He, Weikai Yang</div>
+<div class="meta-line">First: 2026-08-15T11:03:07+00:00 · Latest: 2026-10-14T17:30:27+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.15165v2">Abs</a> · <a href="https://arxiv.org/pdf/2608.15165v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model (LLM) agents can continually improve without parameter updates by converting historical experience into reusable procedural knowledge. However, existing methods often consolidate experience based on semantic similarity or LLM judgments, which may merge superficially related but behaviorally incompatible strategies and thereby degrade performance. To address the issue, we propose SkillCommit, an online skill evolution framework that continuously transforms experience into a hierarchical library of reusable skills. Rather than generalizing from individual experiences immediately, SkillCommit first preserves each experience as an instance-specific patch, retaining its locally validated behavior. As patches accumulate, SkillCommit abstracts those sharing a common behavioral mechanism into higher-level skills. Specifically, for each incoming skill, embedding-based retrieval first identifies candidate related skills. Cross-instance replay and an LLM-based mechanism check determine whether these skills transfer across cases and share a common underlying mechanism. Candidates that pass both checks are abstracted into a higher-level skill and committed only if it preserves the validated behavior of all constituent skills. Experiments on RuleArena, OpenExempt and KOR-Bench demonstrate that SkillCommit consistently improves agent performance across diverse domains. Moreover, the learned skills transfer across model scales and families, enabling cross-model experience transfer.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language model (LLM) agents can continually improve without parameter updates by converting historical experience into reusable procedural knowledge.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Bayesian Learning to Select Fair Classifiers</div>
+<div class="meta-line">Authors: Saatvik Kher, Hyungrok Do, Judy Zhong, Padhraic Smyth</div>
+<div class="meta-line">First: 2026-10-14T17:16:28+00:00 · Latest: 2026-10-14T17:16:28+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20514v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20514v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Evaluations of classifiers (AI or human or agents) often assume a batch setting in which every agent produces labels on every example in a test set, which can be expensive or impractical in many contexts. This motivates online policies that adaptively select agents to query as examples arrive and update policies as outcomes are observed. We study the problem of selecting, in an online stream, the agent that best balances (i) predictive performance and (ii) subgroup fairness of a sensitive attribute, and that allows for delayed observations of true class labels. We formulate this as a Bayesian multi-armed bandit problem using Thompson Sampling, explicitly balancing accuracy and fairness. We conduct empirical evaluations on real-world datasets spanning problems involving tabular classifiers, large language models, and human labelers, demonstrating substantial reductions in regret relative to baselines. Our theoretical contributions include guarantees on the performance of the selected agent that incorporate both the accuracy and fairness aspects of the problem.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Evaluations of classifiers (AI or human or agents) often assume a batch setting in which every agent produces labels on every example in a test set, which can be expensive or impractical in many contexts.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">From Training to Escalation: Forensic Analysis and Local Recreation of RL/RLHF-Induced Privilege Escalation in AI Agents (CVE-2026-65616)</div>
+<div class="meta-line">Authors: Alicia Colmenero-Fernández</div>
+<div class="meta-line">First: 2026-10-14T16:28:09+00:00 · Latest: 2026-10-14T16:28:09+00:00</div>
+<div class="meta-line">Comments: 9 pages, 1 figure. Code and replication environments available at https://github.com/alixiacf/hpim-training-lab DOI:10.5281/zenodo.22817059 and https://github.com/alixiacf/rep-openai-artifactory DOI:10.5281/zenodo.22817059</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20437v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20437v1">PDF</a> · <a href="https://github.com/alixiacf/hpim-training-lab">Code1</a> · <a href="https://github.com/alixiacf/rep-openai-artifactory">Code2</a> · <a href="https://huggingface.co/huggingface">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Mid-2026 reporting on autonomous AI evaluation incidents claimed that frontier large language model (LLM) agents escaped server containment through emergent coordination and cloud infrastructure attacks. This paper contextualizes those claims through forensic analysis and containerized recreation of both the Highly Persistent Internal Model (HPIM) training-case conditions and the Phase One privilege escalation targeting internal package repositories during OpenAI&#x27;s ExploitGym evaluations. We recreate the configuration of the OpenAI-provided training example and reproduce the cryptographic verification bypass (CVE-2026-65616) in isolated repository servers, where misconfigured systems enabled token forgery and privilege escalation through basic HTTP requests, Python, and JavaScript. Crucially, the training-example conditions and the Phase One (and later) misconfigurations share the same exploitable patterns. Our analysis explains how Zero Trust Architecture principles neutralize this shared attack vector. Contemporary AI risks derive directly from training and deployment conditions in ambivalent learning environments lacking adequate containment measures.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Mid-2026 reporting on autonomous AI evaluation incidents claimed that frontier large language model (LLM) agents escaped server containment through emergent coordination and cloud infrastructure attacks.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">From Unreliable to Usable: Decomposing Failure Modes and Confidence Signals in LLM Entity Extraction - Evidence from Cyber Threat Intelligence</div>
+<div class="meta-line">Authors: Jiahong Qian</div>
+<div class="meta-line">First: 2026-10-14T16:13:09+00:00 · Latest: 2026-10-14T16:13:09+00:00</div>
+<div class="meta-line">Comments: 13 pages: 7-page main text within the 8-page limit, plus Limitations, references, and appendices A-J. Code, protocol, and frozen evaluation data will be made public</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20417v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20417v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Audits of large language model (LLM) extraction from full-length documents report severe unreliability, leaving two questions open: what the failures actually consist of, and whether confidence signals can turn unreliable output into usable output. We run a preregistered, fully frozen evaluation of two new-generation low-cost LLMs (DeepSeek-V4-Flash, GLM-5.3-Flash) with a flagship-tier control (GPT-6.1-Sol) on a public corpus of 354 incident campaigns (315 unique reports, 630 model-report evaluations), scoring extraction quality against gold, confidence calibration, and robustness to single-sentence perturbations. Three findings emerge. (1) Unreliability persists across tiers: micro precision is 0.03-0.34 and verbalized calibration error (ECE) 0.53-0.94 across both splits; the gap does not close at the flagship tier. (2) The dominant failure is not hallucination: a full mention census plus a three-tier annotation of 360 sampled candidates (two independent LLM annotators from vendors outside the evaluated set, Cohen&#x27;s kappa = 0.79 on the preregistered acceptance line, fully disclosed) back-projects to 65.6% background mentions and 19.9% gold-scope gaps, with only 1.2% unsupported candidates. (3) Confidence ranks but does not verify: zero-cost self-consistency-frequency tiering passes a preregistered top-30% precision-gain bar in all six test-split model-type cells (4/6 on train), the zero-cost text-frequency x SC frequency combination wins 3, ties 2, loses 1 across cells, yet relation-level counterfactuals on all 45 targets show that a single misattribution sentence flips high-confidence judgments in 95.6-100% of cases, and even a background sentence explicitly marked as unrelated still binds a fake vulnerability in up to 26.7% of them. We conclude with a deployment boundary: confidence tiering may set review priorities, never truth.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Audits of large language model (LLM) extraction from full-length documents report severe unreliability, leaving two questions open: what the failures actually consist of, and whether confidence signals can turn unreliable output into usable output.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">When Does Momentum Help in Reinforcement Learning with Verifiable Rewards?</div>
+<div class="meta-line">Authors: Kaifei Wang, Zikang Shan, Liwei Wang, Yinyu Ye, Han Zhong</div>
+<div class="meta-line">First: 2026-10-14T16:11:14+00:00 · Latest: 2026-10-14T16:11:14+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20413v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20413v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Momentum is a classical tool for accelerating convex optimization and a standard component of modern large language model training. Yet recent empirical work has questioned the usefulness of first-moment momentum in reinforcement learning with verifiable rewards (RLVR). We study this question through a bandit formulation of RLVR with bias-corrected exponential moving average (EMA) momentum, where the EMA coefficient $β$ controls how quickly the weights on past gradients decay. When policy gradients are evaluated exactly, we prove that increasing $β$ within a range that prevents overshoot strictly accelerates optimization. When gradients are estimated from sampled responses, a positive expected gain can be obscured by sampling fluctuations. We show that as the learning rate $η$ decreases, the expected gain with fixed $β$ vanishes faster than these fluctuations, whereas increasing $β$ to keep $η/(1-β)$ within the safe regime preserves a nonvanishing gain that eventually dominates them. Bandit simulations quantitatively validate these predictions. RLVR experiments on Qwen3-4B-Base using SGD with EMA and AdamW support our principle of choosing larger coefficients in practical LLM post-training. On Qwen2.5-32B with AdamW, simply increasing $β_1$ improves mean validation accuracy by nearly $2$ percentage points over the conventional choice, demonstrating the principle&#x27;s effectiveness at a larger model scale.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Momentum is a classical tool for accelerating convex optimization and a standard component of modern large language model training.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Tree-Structured Synergy of Large Language Models and Bayesian Optimization for Efficient CASH</div>
+<div class="meta-line">Authors: Beicheng Xu, Weitong Qian, Lingching Tung, Yupeng Lu, Bin Cui</div>
+<div class="meta-line">Venue: NeurIPS 2026</div>
+<div class="meta-line">First: 2026-01-18T11:26:31+00:00 · Latest: 2026-10-14T16:07:08+00:00</div>
+<div class="meta-line">Comments: Accepted at NeurIPS 2026. Extended version with full appendices</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2601.12355v3">Abs</a> · <a href="https://arxiv.org/pdf/2601.12355v3">PDF</a> · <a href="https://github.com/PKU-DAIR/open-box">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">To lower the expertise barrier in machine learning, the AutoML community has focused on the CASH problem, which jointly automates algorithm selection and hyperparameter tuning. While traditional methods like Bayesian Optimization (BO) struggle with cold-start issues, Large Language Models (LLMs) can mitigate these through semantic priors. However, existing LLM-based optimizers generalize poorly to high-dimensional, structured CASH spaces. CASH requires coordinated exploration and exploitation both across candidate algorithms and within their algorithm-specific hyperparameter spaces. Yet existing approaches often rely on flat optimization histories that mix observations across algorithms and obscure configuration-refinement trajectories. In this paper, we propose LB-MCTS, a trajectory-structured optimization framework that uses a Monte Carlo Tree Search tree as a shared state for algorithm selection, hyperparameter refinement, and BO-LLM proposer synergy. Within this shared state, BO provides algorithm-specific surrogate modeling for quantitative search, while the LLM exploits path-aware selective memory to generate semantic proposals and reflections. As the surrogate model improves, a reliability-aware proposer policy adaptively shifts from LLM-driven to BO-driven proposals within a unified search trajectory. Experiments on 104 AMLB datasets demonstrate that LB-MCTS consistently outperforms BO-based, LLM-based, and hybrid baselines. Code: https://github.com/PKU-DAIR/open-box.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">To lower the expertise barrier in machine learning, the AutoML community has focused on the CASH problem, which jointly automates algorithm selection and hyperparameter tuning.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Cortex: Consolidating Context into Parametric Memory</div>
+<div class="meta-line">Authors: Jintian Zhang, Feng He, Xinnian Liang, Ziwen Xu, Haoming Xu, Haojing Huang, Shuangzhi Wu, Ningyu Zhang</div>
+<div class="meta-line">First: 2026-10-14T16:03:01+00:00 · Latest: 2026-10-14T16:03:01+00:00</div>
+<div class="meta-line">Comments: Technical report</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20399v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20399v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Context can improve large language model performance, but these gains may be lost after context removal. Inspired by biological systems consolidation, we formulate Memory Consolidation (MC) as internalizing these gains while preserving non-target capabilities, connecting context-specified editing, skill learning, and behavioral steering under a common objective. We introduce a five-task-family testbed measuring consolidation and retention under single, batch, and sequential updates. We propose Cortex, which generates prospective queries to anticipate uses of context and distills context-conditioned outputs into mergeable low-rank or structural feed-forward network updates. Across 4B--120B dense and mixture-of-experts backbones, including both text-only and multimodal models, Cortex lies on the empirical consolidation--retention Pareto frontier in most evaluated settings. After 50 sequential factual edits on a 14B model, Cortex-Structural recovers 88.9% of the context-induced gain while retaining 99.8% of original non-target performance.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Context can improve large language model performance, but these gains may be lost after context removal.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">From Relevance to Validity: Zero-Shot Tool Selection via Functional and Contextual Validation</div>
+<div class="meta-line">Authors: Xiaoxuan Dong, Jin Zhang, Zichen Yuan, Yue Zhou, Zihao Rao, Dexu Yu, Tingyong WU, Wenhao Deng, Junchen Fu, Pengwei Sun, Yang Ran, Bo Lan, Yongxin Ni, Youhua Li</div>
+<div class="meta-line">First: 2026-10-14T15:53:25+00:00 · Latest: 2026-10-14T15:53:25+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20388v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20388v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model (LLM) agents increasingly face tasks from unseen domains and execution contexts, making zero-shot tool selection essential for identifying tools that can satisfy task requirements. Existing dominant methods mainly rely on relevance ranking, but semantic matching alone cannot ensure that a tool is functionally compatible or remains applicable in a new context. We preliminarily identify a \emph{transfer-validity gap}, where semantically relevant tools may still fail to satisfy functional or contextual requirements after transfer. To address this gap, we propose \methodname{}, a progressive validation framework that complements semantic relevance with endpoint-grounded functional compatibility and task-conditioned contextual evidence. Across cross-domain and cross-dataset transfer, \methodname{} consistently improves capability ranking, with larger gains under functional or contextual ambiguity. Ablation results further confirm the complementary contributions of functional and contextual validation.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language model (LLM) agents increasingly face tasks from unseen domains and execution contexts, making zero-shot tool selection essential for identifying tools that can satisfy task requirements.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">FaithSieve: Fine-Grained Evaluation of Math Proofs with Faithful Formal Evidence</div>
+<div class="meta-line">Authors: Ziyu Wang, Qiming Dai, Yishan Wu, Zaiwen Wen</div>
+<div class="meta-line">First: 2026-08-26T18:43:30+00:00 · Latest: 2026-10-14T15:39:18+00:00</div>
+<div class="meta-line">Comments: 32 pages, 3 figures; preprint with appendix and supplementary experimental details</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.26310v2">Abs</a> · <a href="https://arxiv.org/pdf/2608.26310v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models can now generate complex, multi-step mathematical proofs, but reliably determining their correctness and localizing early logical errors remains a critical challenge. Existing evaluation approaches largely depend on model-based natural-language judgments, which often overlook local reasoning gaps. While formal theorem provers like Lean offer a path to rigorous verification, using them to evaluate informal text requires solving locality and semantic mismatches: a prover might bypass a local flaw by proving an overly broad target, or validate an auto-formalized statement that drifts from the original mathematical intent. To address this, we introduce FaithSieve, a Lean-assisted framework for fine-grained evaluation of natural-language mathematical proofs. FaithSieve decomposes coarse proof steps into local reasoning units, extracts typed proof obligations, and verifies them through a formal evaluation agent. Formal validation is gated by semantic alignment scoring, so Lean evidence is incorporated only when the formal statement faithfully preserves the context, objects, and logical form of the original claim. We construct two expert-verified datasets, ProofLoc-Olympiad and ProofLoc-University, to benchmark first-error localization. On the 350-problem Olympiad dataset, FaithSieve using a GPT-5.4 backbone achieves 81.43% exact first-error accuracy, outperforming the direct-judging baseline of 72.29%. Furthermore, on the 200-problem ProofLoc-University benchmark spanning six advanced domains, FaithSieve reaches 84.5% exact accuracy, compared to 75.0% for the direct judge. Our work demonstrates that decomposing proofs into fine-grained units and grounding them with faithful formal evidence significantly improves reliable evaluation of natural-language reasoning.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models can now generate complex, multi-step mathematical proofs, but reliably determining their correctness and localizing early logical errors remains a critical challenge.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Doc2Harness: Benchmarking LLMs on Long-Horizon Harness Engineering of Coding Agents</div>
+<div class="meta-line">Authors: Yuyao Ge, Shenghua Liu, Peizhong Gao, Chendi Ge, Chenxu Liu, Yiwei Wang, Lingrui Mei, Baolong Bi, Jiayu Yao, Jiafeng Guo, Xueqi Cheng</div>
+<div class="meta-line">First: 2026-10-14T15:24:39+00:00 · Latest: 2026-10-14T15:24:39+00:00</div>
+<div class="meta-line">Comments: 17 pages, 5 figures, 4 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20344v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20344v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Agents driven by large language models are increasingly deployed on long-horizon tasks, where they use tools and modify real workspaces. How well they perform depends as much on the harness around the model as on the model itself. Existing benchmarks measure downstream task success under a fixed harness, leaving harness engineering itself unexplored. We propose Doc2Harness, a two-stage benchmark that evaluates long-horizon harness engineering directly. In Stage 1, a build model operating inside a fixed builder harness receives an interface-only contract skeleton and a development document that consolidates behavior across twelve frontier harnesses, and then constructs a complete candidate harness in an isolated container. In Stage 2, the frozen candidate harness runs in containers separate from the construction environment, one per test case, and is driven end to end by a scripted mock model. We score each test case using four observable channels, namely the requests sent to the model, the files on disk, the process exit code, and the command output; positive controls rule out vacuous passes. Across nineteen frontier models, each evaluated with three independent builds on 328 test cases, GPT-6 Astra achieves the highest pass rate at 53.05%, while the weakest model reaches 27.44%, a gap of roughly twenty-six percentage points. Even the strongest model fails nearly half of the test cases, and failures cluster around how cross-cutting functionality is split across modules. To our knowledge, Doc2Harness provides the first deterministic benchmark for measuring long-horizon harness engineering.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Agents driven by large language models are increasingly deployed on long-horizon tasks, where they use tools and modify real workspaces.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Argument Graph Uncertainty: Quantifying Uncertainty from the Logical Structure of Reasoning Chains</div>
+<div class="meta-line">Authors: Simon Baur, Sumire Honda, Wojciech Samek, Jackie Ma</div>
+<div class="meta-line">First: 2026-10-14T15:13:00+00:00 · Latest: 2026-10-14T15:13:00+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20328v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20328v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Reliable uncertainty estimation is essential for deploying large language models in high-stakes reasoning tasks, yet most existing approaches rely on expensive sampling strategies or shallow token-level signals that ignore the internal logical structure of model outputs. We introduce Argument Graph Uncertainty, a post-hoc framework for multiple choice question tasks, that estimates model confidence directly from the logical structure of a single chain-of-thought reasoning trace. Our method uses either a lightweight instruction-tuned model or a simple deterministic rule to segment the reasoning chain into propositional units, then applies a NLI model to infer relational edges and construct two complementary argument graphs over these segments. The resulting edge scores are aggregated into a Dirichlet posterior over answer options, whose concentration yields calibrated uncertainty estimates reflecting both local step-to-step coherence and global logical consistency across the reasoning trace. Evaluated on GPQA, MMLU-Pro and TruthfulQA, our method consistently surpasses token-based and consistency-based uncertainty baselines across multiple reasoning models. We further demonstrate through extensive combination analyses that argument graph uncertainty captures an orthogonal signal to existing approaches, making it a complementary component in uncertainty ensembles. Crucially, our framework requires no additional calls to the evaluated model and relies entirely on small, efficient auxiliary models, producing fully interpretable, per-node uncertainty attributions at low computational cost.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Reliable uncertainty estimation is essential for deploying large language models in high-stakes reasoning tasks, yet most existing approaches rely on expensive sampling strategies or shallow token-level signals that ignore the internal logical structure of model outputs.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Beyond Static Cues: Unified Dynamic Detection of MLLM Backdoors via Dual-Flow Trajectory Analysis</div>
+<div class="meta-line">Authors: Yinzhen Huang, Jiahe Xie, Yitong Sun, Ruochen Zhang, Xingxing Wei</div>
+<div class="meta-line">Venue: ACM MM 2026 Oral</div>
+<div class="meta-line">First: 2026-10-14T15:05:49+00:00 · Latest: 2026-10-14T15:05:49+00:00</div>
+<div class="meta-line">Comments: Accepted by ACM MM 2026 (Oral). Code: https://github.com/kaoru0822-kitauji/EVO_Detect</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20319v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20319v1">PDF</a> · <a href="https://github.com/kaoru0822-kitauji/EVO_Detect">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multimodal Large Language Models (MLLMs) are increasingly deployed in safety-critical domains, yet their susceptibility to backdoor attacks remains a formidable challenge. While existing defenses have evolved from visual-centric patch cues to unsupervised internal attention statistics, they are fundamentally constrained by a reliance on static snapshots and attack-specific heuristics. Given the intricate interplay between dual modalities, the vast design space for multimodal triggers allows diverse threats, such as textual injections, sub-perceptual noises, and coordinated cross-modal triggers, to easily circumvent such rigid priors, particularly when attack types are unknown in real-world applications. In this paper, we rethink backdoor detection by shifting the diagnostic paradigm from static observations to dynamic output evolution. We observe that a successful attack inevitably hijacks the model&#x27;s decoding trajectory, skewing internal modal contributions during generation while maintaining an abnormal output invariance despite input perturbations. To capture this behavior, we propose EVO-Detect, a unified detection framework that monitors the dynamic evolution of internal signals during early decoding steps through two complementary channels: Attention Flow and Logits Flow. The attention branch measures how image-text attention allocation evolves during early generation, whereas the logits branch quantifies the sensitivity of the output distribution to modal perturbations through interventional ablations. We then convert these trajectories into compact sample-level metrics and normalize them against negative-control signatures so that natural perturbations are less likely to be mistaken for backdoor evidence. Extensive evaluations show that our approach substantially outperforms state-of-the-art baselines such as BYE and TCAP across diverse attack families.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multimodal Large Language Models (MLLMs) are increasingly deployed in safety-critical domains, yet their susceptibility to backdoor attacks remains a formidable challenge.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SpectrumQuant: Spectrum Alignment for LLM Quantization</div>
+<div class="meta-line">Authors: Dwaipayan Haldar, Indranil Patra, Azhar Yousuf, Chandra Sekhar Seelamantula</div>
+<div class="meta-line">First: 2026-10-14T14:54:16+00:00 · Latest: 2026-10-14T14:54:16+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20303v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20303v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Orthogonal transforms have emerged as an effective tool for low-bit quantization of large language models (LLMs), as they reshape activation distributions without changing the underlying model function. Existing approaches typically rely either on fixed data-agnostic transforms, such as Hadamard rotations, or on calibration-time optimization of learned rotations. We study rotation selection from first principles and show that maximizing covariance leads to spectral alignment and provides a principled criterion for constructing quantization-friendly orthogonal transforms. Based on this insight, we propose SpectrumQuant, a closed-form rotation method that estimates activation covariance from calibration data and uses it to construct a covariance-aware orthogonal transform for post-training quantization. Our formulation characterizes quantization-friendly rotations as compositions of alignment and mixing components, while recovering Hadamard matrices as a special case. Interestingly, a class of butterfly matrices belongs to this category. In the realm of LLM quantization, SpectrumQuant bridges the gap between data-agnostic structured rotations and learned rotations, providing an effective and efficient data-aware alternative for post-training quantization. Experiments on Llama and Mistral models show that SpectrumQuant is competitive with state-of-the-art rotation strategies while requiring less than one-third of the GPU memory and significantly less time than learned rotations approaches like SpinQuant and DartQuant.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Orthogonal transforms have emerged as an effective tool for low-bit quantization of large language models (LLMs), as they reshape activation distributions without changing the underlying model function.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">CASI: Credit Assignment via Set Intervention for Agentic Retrieval</div>
+<div class="meta-line">Authors: Xinyi Cheng, Tianfu Zhang, Jiwen Li, Xuesen Zhang, Shihao Yu, Pengfei Zhu, Renhuan, Heda Wang</div>
+<div class="meta-line">First: 2026-10-14T14:47:46+00:00 · Latest: 2026-10-14T14:47:46+00:00</div>
+<div class="meta-line">Comments: 19 pages, 2 figures, 8 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20293v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20293v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models increasingly generate multiple retrieval actions jointly, while downstream systems often provide only one reward for the resulting set. Broadcasting this reward provides a valid score-function gradient estimator for the expected set-level objective, but does not determine a coalition-dependent within-set attribution. We introduce CASI (Credit Assignment via Set Intervention for Agentic Retrieval), which constructs the missing counterfactual information through snapshot-grounded set intervention: generate and retrieve once, hold replayable snapshot components fixed, and evaluate alternative subsets under common conditions. Shapley aggregation converts these marginals into within-set credit, which bounded zero-sum advantage shaping incorporates into policy optimization. For m &gt;= 4, singleton, leave-one-out, and full-set endpoints do not generally determine the Shapley allocation; under additive set values, extra coalition evaluations are redundant. In a five-action sponsored-search setting, exhaustive auction replay over 1,200 requests reveals substantial coalition dependence. Under the training-time evaluator, CASI achieves the highest median cosine similarity to a replay-defined Shapley reference among evaluated credit rules; under a sensitivity backend, CASI does not outperform Singleton. Across five independent training runs, CASI-trained policies achieve higher held-out auction-replay set value than Singleton- or Broadcast-trained policies. In a randomized seven-day production A/B test on 10% of traffic, the CASI-trained policy yields an observed 3.51% lift in the primary advertiser-value metric over production control.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models increasingly generate multiple retrieval actions jointly, while downstream systems often provide only one reward for the resulting set.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">TANGO: RNA Topology and Geometry Co-Design</div>
+<div class="meta-line">Authors: Tianmeng Hu, Biao Luo, Ke Li</div>
+<div class="meta-line">Venue: NeurIPS 2026</div>
+<div class="meta-line">First: 2026-10-14T14:37:51+00:00 · Latest: 2026-10-14T14:37:51+00:00</div>
+<div class="meta-line">Comments: NeurIPS 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20277v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20277v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Designing RNA sequences that satisfy target tertiary-structure objectives is an important problem in RNA engineering, with broad applications in synthetic biology and therapeutics. Existing 3D RNA design methods have made substantial progress, but they largely treat the target fold as a geometry-only objective. This is incomplete for RNA, whose functional folds are specified not only by tertiary geometry but also by secondary base-pairing topology. We therefore formulate RNA inverse design as a topology-and-geometry co-design problem and propose TANGO, a multi-objective multi-agent reinforcement learning framework for this task. TANGO adopts a staged curriculum: it first learns a topology-aware policy from secondary-structure targets, then transfers this policy to tertiary-structure targets to train a general co-design model, and finally applies frontier-guided fine-tuning to refine target-specific trade-offs among secondary-structure fidelity, tertiary-structure fidelity, and sequence diversity. Experiments show that TANGO generates diverse and novel designs, improving tertiary- and secondary-structure performance by 18.3% and 52.7%, respectively, over the strongest baseline.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Designing RNA sequences that satisfy target tertiary-structure objectives is an important problem in RNA engineering, with broad applications in synthetic biology and therapeutics.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">CSWBench: Evaluating Context-Sensitive Code-Switching in Creative Writing</div>
+<div class="meta-line">Authors: Zewen Jiang, Yahan Li, Chenlu Guo, Diana Inkpen, Yuan Wu, Yi Chang</div>
+<div class="meta-line">First: 2026-10-14T14:33:48+00:00 · Latest: 2026-10-14T14:33:48+00:00</div>
+<div class="meta-line">Comments: 38 pages, 19 figures, 32 tables. Artifacts: https://github.com/TPSJASPER/CSWBench</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20272v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20272v1">PDF</a> · <a href="https://github.com/TPSJASPER/CSWBench">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) have demonstrated multilingual capabilities across diverse language generation and understanding tasks. Yet effective code-switching requires more than multilingual proficiency: models must decide when, where, and why to switch languages in ways that fit the surrounding context. This context-sensitive ability remains insufficiently evaluated. We introduce CSWBench, a benchmark for evaluating context-sensitive code-switching in creative writing through two complementary settings: Focused Narrative and Extended Narrative. We further propose CSWEval, a theory-informed framework with two complementary levels: event-level evaluation of Licensing, Contextual Appropriateness, and Functional Gain, and whole-text evaluation of task-specific quality---overall literary and narrative quality in Focused Narrative and quality emphasizing multilingual organization in Extended Narrative. Evaluating twelve LLMs, we find that models exhibit meaningful but uneven code-switching competence across narrative contexts. Model differences are particularly pronounced in multilingual literary integration, while multilingual-focused dimensions show stronger difficulty effects overall than the general narrative dimensions; narratively salient switches are associated with stronger contextual and functional realization; and event-level CS quality is moderately associated with whole-text performance.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) have demonstrated multilingual capabilities across diverse language generation and understanding tasks.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">P2Patch: Exploit-Guided Vulnerability Repair</div>
+<div class="meta-line">Authors: Mohsen Iranmanesh, Sina Moradi Sabet, Sina Marefat, Ali Javidi Ghasr, Maxime Newman Nereyabagabo, Kousha Amouzesh, Jaivir Malhi, Vinci Velasco, Alex Chung, Mohammad A. Tayebi</div>
+<div class="meta-line">First: 2026-10-14T14:19:21+00:00 · Latest: 2026-10-14T14:19:21+00:00</div>
+<div class="meta-line">Comments: 25 pages, 6 figures, 13 tables. M. Iranmanesh and S. Moradi Sabet contributed equally. Code: https://github.com/P2Patch/P2patch</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20245v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20245v1">PDF</a> · <a href="https://github.com/P2Patch/P2patch">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models are increasingly deployed as autonomous agents for automated program repair, patching software vulnerabilities through multi-step reasoning and tool use. Yet these systems typically validate a patch against the same evidence used to construct it -- a static alert, sanitizer trace, published exploit, or test suite. A patch that blocks that one piece of evidence can therefore look successful while remaining vulnerable to the same vulnerability with some variation. We present P2Patch, a generative adversarial repair system that treats each patch as a new attack target. Starting from a normalized vulnerability finding, an exploitation agent constructs a reproducing proof of vulnerability (PoV), a patching agent repairs the program, and the exploitation agent then attacks the patched program for a distinct same-vulnerability exploit. Every successful exploit becomes a permanent repair requirement, and the final patch must block all PoVs accumulated during the patching process, with construction-time PoVs kept strictly separate from held-out evaluation oracles. Across 101 C/C++ and Java CVE subjects, this adversarial loop surfaces a distinct confirmed exploit in 41% of runs after the patch has already blocked its original construction-time PoV. Against single-pass repair from the same finding using Claude Code, P2Patch raises held-out fix-closed coverage from 78.1% to 84.7% and beyond-upstream coverage from 42.1% to 62.5%. Under the same held-out oracles, it also certifies more attack paths as blocked than recent state-of-the-art agentic repair systems on overlapping subjects. These results show that adversarial testing and independent security oracles expose repair gaps that one-shot validation misses.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models are increasingly deployed as autonomous agents for automated program repair, patching software vulnerabilities through multi-step reasoning and tool use.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation</div>
+<div class="meta-line">Authors: Zahraa Al Sahili, Ioannis Patras, Matthew Purver</div>
+<div class="meta-line">First: 2026-10-14T13:58:39+00:00 · Latest: 2026-10-14T13:58:39+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20221v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20221v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) are increasingly deployed across languages, yet their safety and reasoning capabilities remain predominantly evaluated in English. Translating existing benchmarks offers a scalable approach to multilingual evaluation, but preserving task-specific meaning across languages presents significant challenges, particularly for harmful requests, mathematical reasoning, and conversational interactions. We introduce a reasoning-guided translation framework for constructing multilingual evaluations designed to preserve the structure and intended meaning of diverse benchmark tasks. Our approach separates translation strategy selection from large-scale generation, combining reasoning-guided configuration selection with task-aware validation, targeted repair, and independent quality screening. Using this framework, we develop a source-aligned evaluation collection spanning seven safety, conversational, and mathematical reasoning resources across 11 languages. The resulting collection achieves 99.94\% coverage of intended item--language pairs in the two subsets requiring repair. Evaluations of open-source LLMs reveal distinct language-dependent vulnerabilities, including inconsistent refusal behaviour and substantial reasoning degradation in lower-resource languages. These findings highlight the importance of task-sensitive benchmark construction and systematic quality assessment for understanding multilingual model behaviour beyond English.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) are increasingly deployed across languages, yet their safety and reasoning capabilities remain predominantly evaluated in English.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SHAPE of Thinking: Mathematical Heuristics for Analyzing and Improving LLM Reasoning</div>
+<div class="meta-line">Authors: Jonghyun Song, Sangjun Song, Minjae Oh, Haesung Pyun, Sungsik Lee, Yohan Jo</div>
+<div class="meta-line">First: 2026-06-28T11:15:59+00:00 · Latest: 2026-10-14T13:51:22+00:00</div>
+<div class="meta-line">Comments: 21 pages</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2608.28600v2">Abs</a> · <a href="https://arxiv.org/pdf/2608.28600v2">PDF</a> · <a href="https://github.com/holi-lab/shape-of-CoT}{https://github.com/holi-lab/shape-of-CoT">Code1</a> · <a href="https://github.com/holi-lab/shape-of-CoT">Code2</a> · <a href="https://huggingface.co/huggingface">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) achieve strong performance on mathematical reasoning benchmarks, yet final-answer accuracy reveals little about the strategies they use. We introduce \texttt{SHAPE} (Structured Heuristic Analysis for Problem-solving Evolution), a framework grounded in mathematics-education research that characterizes local mathematical actions in reasoning trajectories using a problem-independent heuristic taxonomy. Using \texttt{SHAPE}, we examine two previously hypothesized phenomena in LLM reasoning. First, we revisit the hypothesis that LLMs reuse learned solution techniques under problem perturbations. Across six models on MATH-Perturb, perturbations requiring a different solution approach yield lower accuracy but greater heuristic shifts than those preserving it. Second, we characterize mode-seeking in RLVR through mathematical heuristic profiles. Across four base--RL pairs, successful RL solutions overlap substantially with base-model profiles. We further introduce Heuristic-Augmented Plan-GRPO (HA-Plan-GRPO), which guides RLVR planning through heuristic selection and applicability reasoning. Across three models and five evaluation sets, it improves mean Avg@16 by up to 7.0\% absolute and mean Pass@16 by up to 2.4\% absolute over planning-only RLVR. Our code is available at \href{https://github.com/holi-lab/shape-of-CoT}{https://github.com/holi-lab/shape-of-CoT}.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) achieve strong performance on mathematical reasoning benchmarks, yet final-answer accuracy reveals little about the strategies they use.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Drivers of LLM Consensus Formation Under Competing Incentives: A Simulation Study</div>
+<div class="meta-line">Authors: Isabel Jones, Matthew Edwards, Janina A. Hoffmann</div>
+<div class="meta-line">First: 2026-10-14T13:46:42+00:00 · Latest: 2026-10-14T13:46:42+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20200v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20200v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Models (LLMs) are increasingly deployed in multi-agent environments that produce unanimous agreement, both in intended interactions that need coordination and in unintended emergent interactions. Consequently, understanding how LLMs with competing incentives reach consensus is crucial to better interpret and design LLM collectives. We introduce an evaluation, based on the Network Consensus game, to assess the mechanisms driving this process. Here, a network of agents must agree on one of two colours to receive a payoff, but agents are offered different payoffs for the agreed colour. We vary components such as communication access and network structure and assess six open-source models and one closed model (ChatGPT 5.6-sol).
+  We find that open-source LLMs reach consensus less often than humans in comparable experiments and only if messages are communicated across the global network. ChatGPT 5.6-sol, however, is able to reach consensus with communication limited to its neighbours and with no communication ability. This is achieved through lower stubbornness and higher majority-following tendencies, and by providing more information about its neighbours&#x27; states in messages. However, situating agents in a highly clustered graph reduces consensus, regardless of these traits, demonstrating that both system design and individual model traits drive collective outcomes.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large Language Models (LLMs) are increasingly deployed in multi-agent environments that produce unanimous agreement, both in intended interactions that need coordination and in unintended emergent interactions.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Activation Steering Induces Emergent Misalignment: Steering Vector Construction and Comprehensive Evaluation</div>
+<div class="meta-line">Authors: Qi Cao, Jian Lou, Meiting Liu, Wenjie Feng, Dan Li, Anh Tuan Luu</div>
+<div class="meta-line">First: 2026-06-07T15:34:59+00:00 · Latest: 2026-10-14T13:34:57+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2606.08682v2">Abs</a> · <a href="https://arxiv.org/pdf/2606.08682v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Activation steering (AS) has emerged as a popular inference-time technique for modulating the behavior of large language models (LLMs). AS modulates model behavior in a flexible and lightweight manner by injecting task-specific steering vectors (SVs) into intermediate activations. Meanwhile, recent work has identified emergent misalignment (EM) as an emerging safety concern, whereby finetuning on unsafe examples from a narrow task unexpectedly induces broadly unsafe behavior in unrelated domains. With the increasing popularity of AS, it is pressing yet under-explored to thoroughly investigate whether AS can induce EM. In this paper, we conduct a comprehensive study of activation-steering-induced emergent misalignment. Specifically, (1) we identify a steering vector construction to confirm that SVs derived from a narrow task can indeed induce misalignment across broad unrelated domains. Qualitative measurement further reveals that AS-induced EM may pose more severe safety risks than finetuning-induced EM, i.e., AS elicits more actionable harmful responses with greater semantic coherence than those generated by finetuned models. (2) We characterize the properties of AS-induced EM by analyzing key steering-specific factors, including steering magnitude, the low-rank structure of the steering subspace, and the number of fine-tuning epochs used during steering-vector construction. (3) We evaluate the robustness and sensitivity of AS-induced EM across diverse model families, model scales, target tasks, and intervention layers. Our findings reveal activation steering as a significant yet underexamined source of emergent misalignment and provide an activation-space perspective on emergent misalignment and its safety risks.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Activation steering (AS) has emerged as a popular inference-time technique for modulating the behavior of large language models (LLMs).</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Retrieval-Augmented Large Language Model Decision-Making for Autonomous Driving Guided by Chinese Philosophical Wisdom</div>
+<div class="meta-line">Authors: Xiaojun Bi, Xiaoyuan Ma, Yiwen Sun, Tianren Huang, Chaoran Liu, Bokai Huang, Hao Yang, Baichuan Mo</div>
+<div class="meta-line">First: 2026-10-02T19:07:28+00:00 · Latest: 2026-10-14T13:28:56+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.03948v3">Abs</a> · <a href="https://arxiv.org/pdf/2610.03948v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Autonomous driving decision systems must balance safety, efficiency, and social norms in complex traffic interactions. Philosophical and ethical considerations have received limited attention in existing autonomous driving decision-making approaches based on numerical optimization, sequence prediction, and large language models (LLMs). We propose Chinese Philosophical Wisdom-Guided Driving (CPW-Drive), a closed-loop retrieval-augmented generation (RAG) framework that incorporates value guidance derived from Chinese philosophy into autonomous driving decision-making. Using Chinese Confucian thought as its knowledge source, CPW-Drive consolidates LLM-extracted keywords from relevant classical texts into driving-relevant value principles through manual screening and validation. It then contextualizes these principles through scenario-specific cases to form retrievable and reusable value guidance. We further propose Physics-aware Spatial Similarity Retrieval (PSSR), which compares vehicle layouts and velocity-extrapolated states to retrieve physically relevant historical cases. On Highway-env&#x27;s multilane highway-driving task, CPW-Drive achieves success rates of 93.0%, 86.0%, and 72.0% across three traffic configurations. These results outperform the strongest baseline by 8.0, 22.5, and 25.0 percentage points, respectively. Across all configurations, CPW-Drive achieves the highest collision-free step count and maintains a low lane-change frequency. The results suggest that structured value guidance can improve simulated closed-loop safety and stability while introducing efficiency and latency trade-offs.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Autonomous driving decision systems must balance safety, efficiency, and social norms in complex traffic interactions.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Structural Dependence, Imitation or Herding? A Multi-Agent Simulation of Global Intermedia Agenda Setting</div>
+<div class="meta-line">Authors: Mohammad Yousuf, Arif Md Tareque Habib</div>
+<div class="meta-line">First: 2026-10-14T13:04:25+00:00 · Latest: 2026-10-14T13:04:25+00:00</div>
+<div class="meta-line">Comments: 20 pages, 3 figures, 15 tables. Code and data: https://github.com/hellowyousuf/dependence-imitation-herding, DOI 10.5281/zenodo.23330238</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20144v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20144v1">PDF</a> · <a href="https://github.com/hellowyousuf/dependence-imitation-herding">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">News outlets in poorer countries cover the world much as the leading outlets of rich countries do. Two explanations compete. One says they depend on Western news agencies for lack of resources. The other says they choose to copy prestigious outlets or whoever moves first. Observation cannot tell these apart. This study measured how closely 18 national outlets in Bangladesh, Kenya, South Africa, India, Malaysia and Nigeria followed four core outlets in how much attention they gave, which angle they took and when they published, on the wars in Ukraine and Gaza and two UN climate conferences in 2022-2024. It then ran a simulation in which language models acted as the outlets&#x27; editors and dependence, imitation and herding were switched on and off. Of nine tests, one held: outlets that relied more on wire copy published sooner after the core did. Tier and local stake showed no effect distinguishable from none. The herding test was supported and the imitation test was not. The simulation did not decide between the mechanisms, because the dependence rule, as fitted, reduced to publishing wire copy. Wire copy sets the clock of the periphery&#x27;s foreign news. Whether it sets the agenda stays open.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">News outlets in poorer countries cover the world much as the leading outlets of rich countries do.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">HM3D-M3: A Benchmark for Multi-Agent, Multi-Modal, Multi-Object Goal Navigation</div>
+<div class="meta-line">Authors: Hongyu Ding, Kanyu Xu, Mingjia Chen, Zixuan Chen, Jieqi Shi, Jing Huo, Yifan Zhang, Yang Gao</div>
+<div class="meta-line">First: 2026-10-14T12:44:42+00:00 · Latest: 2026-10-14T12:44:42+00:00</div>
+<div class="meta-line">Comments: Project Page: https://robo-lavira.github.io/hm3d-m3/</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20121v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20121v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a> · <a href="https://robo-lavira.github.io/hm3d-m3/">Project1</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Rapid progress in AI agents and robotics makes it a matter of the near future that humans are served by a team of robots. Such a team will receive several goals at once, each specified in whatever form is convenient for the human, such as a category name, a photo, or a spoken description. Existing benchmarks study multi-agent, multi-modal, and multi-object goal navigation in isolation, and a benchmark that places all three in one episode is missing. To fill this gap, we introduce HM3D-M3. A team of K agents starts at distributed locations in a photorealistic indoor scene and searches for an unordered set of M object goals, each given as an open-vocabulary category, an instance image, or an instance description. HM3D-M3 provides 1,000 validation episodes over 3,926 goals from 379 open-vocabulary categories, 100K observation-assignment training samples, and two team-level metrics, goal-level SR and makespan-normalized SPL. We further contribute two baselines. HiGA is a trained hierarchical goal assigner on top of a frozen open-vocabulary navigation policy, and LaViRA-M3 is a training-free team of VLM agents with shared mapping and progress analysis. Adapted multi-robot and zero-shot methods reach 16--27% SR, while our baselines reach 38--41% with complementary strengths and distinct failure modes. Furthermore, we deploy LaViRA-M3 on a heterogeneous three-robot team. Project page: https://robo-lavira.github.io/hm3d-m3/</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Rapid progress in AI agents and robotics makes it a matter of the near future that humans are served by a team of robots.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">EvalBuilder: Can LLMs Build Efficient Benchmarks?</div>
+<div class="meta-line">Authors: Huaisheng Zhu, Hangfan Zhang, Teng Xiao, Siyuan Xu, Shijie Zhou, Zhimeng Guo, Zhengyu Chen, Jingang Wang</div>
+<div class="meta-line">First: 2026-10-14T12:35:02+00:00 · Latest: 2026-10-14T12:35:02+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20099v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20099v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model (LLM) agents are increasingly used for long-horizon research and engineering, yet evaluating these capabilities remains expensive, time-consuming, and heavily dependent on human expertise. This motivates a natural question: can LLM agents themselves construct efficient benchmarks that preserve the conclusions of costly reference evaluations? We study this capability by formulating automatic benchmark development as a meta-evaluation problem, where an agent is given a task and an expensive reference benchmark and requested to construct a lower-cost proxy benchmark that faithfully distinguishes among candidate models and solutions. Based on this formulation, we introduce EvalBuilder, a framework for evaluating such benchmark-generation capabilities along three key dimensions: fidelity, efficiency, and robustness. Specifically, we assess whether generated benchmarks preserve model rankings, generalize to held-out models and freshly collected responses, and provide well-calibrated and discriminative scores while substantially reducing evaluation cost. We further provide an iterative environment in which agents can refine their benchmarks under a fixed time budget. Our framework provides a systematic testbed and benchmark for understanding when current LLM agents can develop useful evaluators and how benchmark construction itself can be increasingly automated.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language model (LLM) agents are increasingly used for long-horizon research and engineering, yet evaluating these capabilities remains expensive, time-consuming, and heavily dependent on human expertise.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Designing Textual Interfaces To Enhance Llm Reasoning On Audio-Visual Question Answering</div>
+<div class="meta-line">Authors: Yi Wang, Tianzi Wang, Tong Lei, Dahan Wang, Peter Bell</div>
+<div class="meta-line">Venue: ICASSP 2027</div>
+<div class="meta-line">First: 2026-10-14T12:23:59+00:00 · Latest: 2026-10-14T12:23:59+00:00</div>
+<div class="meta-line">Comments: Submitted to IEEE ICASSP 2027</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20085v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.20085v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Automatic prompt optimization (APO) has shown strong effectiveness for text-based LLMs and LLM systems, but its application to audio-visual understanding systems requires suitable textual interfaces through which multimodal reasoning can be exposed to text-based optimizers. We investigate how the design of textual interfaces affects prompt optimization for multimodal reasoning, on the audio-visual question answering task. We compare three interface designs, including a direct inference system consisting of a single omni-modal large language model (OmniLLM), a captioner-reasoner system, and an agentic architecture in which a primary agent orchestrates subagent OmniLLMs. Experiments with Qwen3-Omni and Gemini show that direct prompt optimization provides model-dependent gains; the captioner-reasoner system and the agentic system expose more interpretable optimization interfaces but are harder to optimize, where error analysis of cases affected by optimization is conducted. Our study highlights textual interface design as an important factor in making prompt optimization effective for omni-modal reasoning systems. Our implementation details are specified in GitHub repo.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Automatic prompt optimization (APO) has shown strong effectiveness for text-based LLMs and LLM systems, but its application to audio-visual understanding systems requires suitable textual interfaces through which multimodal reasoning can be exposed to text-based optimizers.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Automated Assembly Instruction Generation from CAD Models Using Grounded Large Language Models: A Human-in-the-Loop Framework</div>
+<div class="meta-line">Authors: Aaron Dsouza, Mohammed Azeez Khan, Ashutosh Mishra, Arshaan Khan, Neha K. Nair, Amar Kumar Behera</div>
+<div class="meta-line">First: 2026-10-08T13:04:03+00:00 · Latest: 2026-10-14T12:21:59+00:00</div>
+<div class="meta-line">Comments: Withdrawal requested as one of the co-authors did not consent to the publication of the manuscript</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.11896v2">Abs</a> · <a href="https://arxiv.org/pdf/2610.11896v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Assembly documentation is a downstream manufacturing artifact that is still usually authored by interpreting CAD models by hand. Structured product data and large language models are both available, yet studies of CAD interpretation, assembly sequence planning, instruction writing, and human oversight have largely proceeded separately. This paper formulates CAD-grounded assembly instruction generation: the production of natural-language assembly procedures constrained by structured engineering information extracted from CAD models. The proposed framework maps a STEP assembly to a typed ProductGraph intermediate representation, derives a precedence order by deterministic topological sorting, realizes each step as language conditioned only on selected graph context, attaches per-step visual documentation, and applies rule-based and model-assisted checks. PDF export remains disabled until a human reviewer resolves every quality flag. The case study establishes endto-end feasibility on a built-in six-part reference assembly: the pipeline preserves a reported assembly order and carries quantity, material, and torque into an exported manual page. Generalization and geometric validation remain open empirical questions. The contribution is an architecture that separates engineering state, deterministic reasoning, grounded language realization, verification, and human release.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Assembly documentation is a downstream manufacturing artifact that is still usually authored by interpreting CAD models by hand.</div>
+</details>
+</div></div>
+    <details style="margin-top:16px" class="detail"><summary>History</summary>
+      <div class="history-list"><a href="archive/20261015_0604.html">20261015_0604</a>
+<a href="archive/20261014_0712.html">20261014_0712</a>
+<a href="archive/20261013_0909.html">20261013_0909</a>
+<a href="archive/20261012_0641.html">20261012_0641</a>
+<a href="archive/20261011_0615.html">20261011_0615</a>
+<a href="archive/20261010_0703.html">20261010_0703</a>
+<a href="archive/20261009_0739.html">20261009_0739</a>
+<a href="archive/20261008_0728.html">20261008_0728</a>
+<a href="archive/20261007_0655.html">20261007_0655</a>
+<a href="archive/20261006_0837.html">20261006_0837</a>
+<a href="archive/20261005_0613.html">20261005_0613</a>
+<a href="archive/20261004_0600.html">20261004_0600</a>
+<a href="archive/20261003_0655.html">20261003_0655</a>
+<a href="archive/20261002_0702.html">20261002_0702</a>
+<a href="archive/20261001_0650.html">20261001_0650</a>
+<a href="archive/20260930_0652.html">20260930_0652</a>
+<a href="archive/20260929_0745.html">20260929_0745</a>
+<a href="archive/20260928_0552.html">20260928_0552</a>
+<a href="archive/20260927_0552.html">20260927_0552</a>
+<a href="archive/20260926_0600.html">20260926_0600</a>
+<a href="archive/20260925_0601.html">20260925_0601</a>
+<a href="archive/20260924_0606.html">20260924_0606</a>
+<a href="archive/20260923_0548.html">20260923_0548</a>
+<a href="archive/20260922_0628.html">20260922_0628</a>
+<a href="archive/20260921_0512.html">20260921_0512</a>
+<a href="archive/20260920_0520.html">20260920_0520</a>
+<a href="archive/20260919_0527.html">20260919_0527</a>
+<a href="archive/20260918_0557.html">20260918_0557</a>
+<a href="archive/20260917_0556.html">20260917_0556</a>
+<a href="archive/20260916_0557.html">20260916_0557</a>
+<a href="archive/20260913_0515.html">20260913_0515</a>
+<a href="archive/20260912_0534.html">20260912_0534</a>
+<a href="archive/20260911_0526.html">20260911_0526</a>
+<a href="archive/20260910_0531.html">20260910_0531</a>
+<a href="archive/20260909_0536.html">20260909_0536</a>
+<a href="archive/20260908_0556.html">20260908_0556</a>
+<a href="archive/20260907_0505.html">20260907_0505</a>
+<a href="archive/20260906_0458.html">20260906_0458</a>
+<a href="archive/20260905_0516.html">20260905_0516</a>
+<a href="archive/20260904_0536.html">20260904_0536</a>
+<a href="archive/20260903_0538.html">20260903_0538</a>
+<a href="archive/20260902_0538.html">20260902_0538</a>
+<a href="archive/20260901_0708.html">20260901_0708</a>
+<a href="archive/20260831_0552.html">20260831_0552</a>
+<a href="archive/20260830_0532.html">20260830_0532</a>
+<a href="archive/20260829_1001.html">20260829_1001</a>
+<a href="archive/20260828_1027.html">20260828_1027</a>
+<a href="archive/20260827_0542.html">20260827_0542</a>
+<a href="archive/20260826_0332.html">20260826_0332</a>
+<a href="archive/20260825_0329.html">20260825_0329</a>
+<a href="archive/20260824_0322.html">20260824_0322</a>
+<a href="archive/20260823_0322.html">20260823_0322</a>
+<a href="archive/20260822_0326.html">20260822_0326</a>
+<a href="archive/20260821_0331.html">20260821_0331</a>
+<a href="archive/20260820_0326.html">20260820_0326</a>
+<a href="archive/20260819_0327.html">20260819_0327</a>
+<a href="archive/20260818_0328.html">20260818_0328</a>
+<a href="archive/20260817_0321.html">20260817_0321</a>
+<a href="archive/20260816_0321.html">20260816_0321</a>
+<a href="archive/20260815_0349.html">20260815_0349</a>
+<a href="archive/20260814_0356.html">20260814_0356</a>
+<a href="archive/20260813_0401.html">20260813_0401</a>
+<a href="archive/20260812_0401.html">20260812_0401</a>
+<a href="archive/20260811_0356.html">20260811_0356</a>
+<a href="archive/20260810_0333.html">20260810_0333</a>
+<a href="archive/20260809_0330.html">20260809_0330</a>
+<a href="archive/20260808_0353.html">20260808_0353</a>
+<a href="archive/20260807_0841.html">20260807_0841</a>
+<a href="archive/20260806_0427.html">20260806_0427</a>
+<a href="archive/20260805_0424.html">20260805_0424</a>
+<a href="archive/20260804_0427.html">20260804_0427</a>
+<a href="archive/20260803_0410.html">20260803_0410</a>
+<a href="archive/20260802_0410.html">20260802_0410</a>
+<a href="archive/20260801_0421.html">20260801_0421</a>
+<a href="archive/20260731_0414.html">20260731_0414</a>
+<a href="archive/20260730_0413.html">20260730_0413</a>
+<a href="archive/20260729_0417.html">20260729_0417</a>
+<a href="archive/20260728_0423.html">20260728_0423</a>
+<a href="archive/20260727_0411.html">20260727_0411</a>
+<a href="archive/20260725_0419.html">20260725_0419</a>
+<a href="archive/20260724_0413.html">20260724_0413</a>
+<a href="archive/20260723_0412.html">20260723_0412</a>
+<a href="archive/20260722_0419.html">20260722_0419</a>
+<a href="archive/20260721_0421.html">20260721_0421</a>
+<a href="archive/20260720_0408.html">20260720_0408</a>
+<a href="archive/20260719_0404.html">20260719_0404</a>
+<a href="archive/20260718_0406.html">20260718_0406</a>
+<a href="archive/20260717_0403.html">20260717_0403</a>
+<a href="archive/20260716_0409.html">20260716_0409</a>
+<a href="archive/20260715_0412.html">20260715_0412</a>
+<a href="archive/20260714_0415.html">20260714_0415</a>
+<a href="archive/20260713_0407.html">20260713_0407</a>
+<a href="archive/20260712_0406.html">20260712_0406</a>
+<a href="archive/20260711_0424.html">20260711_0424</a>
+<a href="archive/20260710_0448.html">20260710_0448</a>
+<a href="archive/20260709_0420.html">20260709_0420</a>
+<a href="archive/20260708_0450.html">20260708_0450</a>
+<a href="archive/20260707_0453.html">20260707_0453</a>
+<a href="archive/20260706_0414.html">20260706_0414</a>
+<a href="archive/20260705_0409.html">20260705_0409</a>
+<a href="archive/20260704_0415.html">20260704_0415</a>
+<a href="archive/20260703_0418.html">20260703_0418</a>
+<a href="archive/20260702_0449.html">20260702_0449</a>
+<a href="archive/20260701_0458.html">20260701_0458</a>
+<a href="archive/20260630_0450.html">20260630_0450</a>
+<a href="archive/20260629_0414.html">20260629_0414</a>
+<a href="archive/20260627_0447.html">20260627_0447</a>
+<a href="archive/20260626_0457.html">20260626_0457</a>
+<a href="archive/20260625_0449.html">20260625_0449</a>
+<a href="archive/20260624_0501.html">20260624_0501</a>
+<a href="archive/20260623_0532.html">20260623_0532</a>
+<a href="archive/20260622_0426.html">20260622_0426</a>
+<a href="archive/20260621_0416.html">20260621_0416</a>
+<a href="archive/20260620_0427.html">20260620_0427</a>
+<a href="archive/20260619_0541.html">20260619_0541</a>
+<a href="archive/20260618_0507.html">20260618_0507</a>
+<a href="archive/20260617_0543.html">20260617_0543</a>
+<a href="archive/20260616_0544.html">20260616_0544</a>
+<a href="archive/20260615_0418.html">20260615_0418</a>
+<a href="archive/20260614_0416.html">20260614_0416</a>
+<a href="archive/20260613_0503.html">20260613_0503</a>
+<a href="archive/20260612_0521.html">20260612_0521</a>
+<a href="archive/20260611_0526.html">20260611_0526</a>
+<a href="archive/20260610_0458.html">20260610_0458</a>
+<a href="archive/20260609_0512.html">20260609_0512</a>
+<a href="archive/20260608_0413.html">20260608_0413</a>
+<a href="archive/20260607_0410.html">20260607_0410</a>
+<a href="archive/20260606_0449.html">20260606_0449</a>
+<a href="archive/20260604_0550.html">20260604_0550</a>
+<a href="archive/20260603_0548.html">20260603_0548</a>
+<a href="archive/20260601_0408.html">20260601_0408</a>
+<a href="archive/20260531_0409.html">20260531_0409</a>
+<a href="archive/20260530_0508.html">20260530_0508</a>
+<a href="archive/20260529_0515.html">20260529_0515</a>
+<a href="archive/20260528_0503.html">20260528_0503</a>
+<a href="archive/20260527_0458.html">20260527_0458</a>
+<a href="archive/20260526_0424.html">20260526_0424</a>
+<a href="archive/20260524_0406.html">20260524_0406</a>
+<a href="archive/20260523_0444.html">20260523_0444</a>
+<a href="archive/20260522_0452.html">20260522_0452</a>
+<a href="archive/20260521_0500.html">20260521_0500</a>
+<a href="archive/20260520_0446.html">20260520_0446</a>
+<a href="archive/20260519_0425.html">20260519_0425</a>
+<a href="archive/20260518_0405.html">20260518_0405</a>
+<a href="archive/20260517_0402.html">20260517_0402</a>
+<a href="archive/20260516_0418.html">20260516_0418</a>
+<a href="archive/20260515_0440.html">20260515_0440</a>
+<a href="archive/20260514_0446.html">20260514_0446</a>
+<a href="archive/20260513_0430.html">20260513_0430</a>
+<a href="archive/20260512_0448.html">20260512_0448</a>
+<a href="archive/20260511_0400.html">20260511_0400</a>
+<a href="archive/20260510_0358.html">20260510_0358</a>
+<a href="archive/20260509_0408.html">20260509_0408</a>
+<a href="archive/20260508_0415.html">20260508_0415</a>
+<a href="archive/20260507_0423.html">20260507_0423</a>
+<a href="archive/20260506_0408.html">20260506_0408</a>
+<a href="archive/20260504_0356.html">20260504_0356</a>
+<a href="archive/20260503_0356.html">20260503_0356</a>
+<a href="archive/20260502_0406.html">20260502_0406</a>
+<a href="archive/20260501_0410.html">20260501_0410</a>
+<a href="archive/20260430_0411.html">20260430_0411</a>
+<a href="archive/20260429_0417.html">20260429_0417</a>
+<a href="archive/20260428_0409.html">20260428_0409</a>
+<a href="archive/20260427_0348.html">20260427_0348</a>
+<a href="archive/20260426_0345.html">20260426_0345</a>
+<a href="archive/20260425_0353.html">20260425_0353</a>
+<a href="archive/20260424_0407.html">20260424_0407</a>
+<a href="archive/20260423_0406.html">20260423_0406</a>
+<a href="archive/20260422_0404.html">20260422_0404</a>
+<a href="archive/20260421_0401.html">20260421_0401</a>
+<a href="archive/20260420_0342.html">20260420_0342</a>
+<a href="archive/20260419_0342.html">20260419_0342</a>
+<a href="archive/20260418_0359.html">20260418_0359</a>
+<a href="archive/20260417_0401.html">20260417_0401</a>
+<a href="archive/20260416_0404.html">20260416_0404</a>
+<a href="archive/20260415_0406.html">20260415_0406</a>
+<a href="archive/20260414_0407.html">20260414_0407</a>
+<a href="archive/20260413_0340.html">20260413_0340</a>
+<a href="archive/20260412_0336.html">20260412_0336</a>
+<a href="archive/20260411_0345.html">20260411_0345</a>
+<a href="archive/20260410_0403.html">20260410_0403</a>
+<a href="archive/20260409_0401.html">20260409_0401</a>
+<a href="archive/20260408_0359.html">20260408_0359</a>
+<a href="archive/20260407_0354.html">20260407_0354</a>
+<a href="archive/20260406_0334.html">20260406_0334</a>
+<a href="archive/20260405_0332.html">20260405_0332</a>
+<a href="archive/20260404_0339.html">20260404_0339</a>
+<a href="archive/20260403_0352.html">20260403_0352</a>
+<a href="archive/20260401_0356.html">20260401_0356</a>
+<a href="archive/20260331_0357.html">20260331_0357</a>
+<a href="archive/20260328_0342.html">20260328_0342</a>
+<a href="archive/20260326_0349.html">20260326_0349</a>
+<a href="archive/20260325_0355.html">20260325_0355</a>
+<a href="archive/20260324_0354.html">20260324_0354</a>
+<a href="archive/20260323_0327.html">20260323_0327</a>
+<a href="archive/20260322_0325.html">20260322_0325</a>
+<a href="archive/20260321_0339.html">20260321_0339</a>
+<a href="archive/20260320_0348.html">20260320_0348</a>
+<a href="archive/20260319_0354.html">20260319_0354</a>
+<a href="archive/20260318_0356.html">20260318_0356</a>
+<a href="archive/20260317_0354.html">20260317_0354</a>
+<a href="archive/20260316_1722.html">20260316_1722</a>
+<a href="archive/20260316_1646.html">20260316_1646</a>
+<a href="archive/20260316_0343.html">20260316_0343</a>
+<a href="archive/20260315_0341.html">20260315_0341</a>
+<a href="archive/20260314_0344.html">20260314_0344</a>
+<a href="archive/20260313_0352.html">20260313_0352</a>
+<a href="archive/20260312_0352.html">20260312_0352</a>
+<a href="archive/20260311_0347.html">20260311_0347</a>
+<a href="archive/20260310_0350.html">20260310_0350</a>
+<a href="archive/20260309_0338.html">20260309_0338</a>
+<a href="archive/20260308_0337.html">20260308_0337</a>
+<a href="archive/20260307_0347.html">20260307_0347</a>
+<a href="archive/20260306_0402.html">20260306_0402</a>
+<a href="archive/20260305_0348.html">20260305_0348</a>
+<a href="archive/20260304_0348.html">20260304_0348</a>
+<a href="archive/20260303_0348.html">20260303_0348</a>
+<a href="archive/20260302_0336.html">20260302_0336</a>
+<a href="archive/20260301_0339.html">20260301_0339</a>
+<a href="archive/20260228_0348.html">20260228_0348</a>
+<a href="archive/20260227_0354.html">20260227_0354</a>
+<a href="archive/20260226_0402.html">20260226_0402</a>
+<a href="archive/20260225_0404.html">20260225_0404</a>
+<a href="archive/20260224_0406.html">20260224_0406</a>
+<a href="archive/20260223_0338.html">20260223_0338</a>
+<a href="archive/20260222_0339.html">20260222_0339</a>
+<a href="archive/20260221_0345.html">20260221_0345</a>
+<a href="archive/20260220_0348.html">20260220_0348</a>
+<a href="archive/20260219_0358.html">20260219_0358</a>
+<a href="archive/20260218_0358.html">20260218_0358</a>
+<a href="archive/20260217_0343.html">20260217_0343</a>
+<a href="archive/20260216_0339.html">20260216_0339</a>
+<a href="archive/20260215_0338.html">20260215_0338</a>
+<a href="archive/20260213_0401.html">20260213_0401</a>
+<a href="archive/20260212_0404.html">20260212_0404</a>
+<a href="archive/20260210_0409.html">20260210_0409</a>
+<a href="archive/20260208_0339.html">20260208_0339</a>
+<a href="archive/20260207_0349.html">20260207_0349</a>
+<a href="archive/20260206_0347.html">20260206_0347</a>
+<a href="archive/20260205_0346.html">20260205_0346</a>
+<a href="archive/20260204_0354.html">20260204_0354</a>
+<a href="archive/20260202_0337.html">20260202_0337</a>
+<a href="archive/20260201_0333.html">20260201_0333</a>
+<a href="archive/20260131_0345.html">20260131_0345</a>
+<a href="archive/20260130_0341.html">20260130_0341</a>
+<a href="archive/20260129_0344.html">20260129_0344</a>
+<a href="archive/20260128_0341.html">20260128_0341</a>
+<a href="archive/20260127_0338.html">20260127_0338</a>
+<a href="archive/20260126_0330.html">20260126_0330</a>
+<a href="archive/20260125_0329.html">20260125_0329</a>
+<a href="archive/20260124_0337.html">20260124_0337</a>
+<a href="archive/20260123_0337.html">20260123_0337</a>
+<a href="archive/20260122_0343.html">20260122_0343</a>
+<a href="archive/20260121_0424.html">20260121_0424</a>
+<a href="archive/20260119_0329.html">20260119_0329</a>
+<a href="archive/20260118_0327.html">20260118_0327</a>
+<a href="archive/20260117_0332.html">20260117_0332</a>
+<a href="archive/20260116_0339.html">20260116_0339</a>
+<a href="archive/20260115_0334.html">20260115_0334</a>
+<a href="archive/20260114_0333.html">20260114_0333</a>
+<a href="archive/20260113_0334.html">20260113_0334</a>
+<a href="archive/20260112_0331.html">20260112_0331</a>
+<a href="archive/20260111_0329.html">20260111_0329</a>
+<a href="archive/20260110_0333.html">20260110_0333</a>
+<a href="archive/20260109_0334.html">20260109_0334</a>
+<a href="archive/20260108_0335.html">20260108_0335</a>
+<a href="archive/20260107_0330.html">20260107_0330</a>
+<a href="archive/20260106_0336.html">20260106_0336</a>
+<a href="archive/20260105_0328.html">20260105_0328</a>
+<a href="archive/20260104_0328.html">20260104_0328</a>
+<a href="archive/20260103_0325.html">20260103_0325</a>
+<a href="archive/20260102_0339.html">20260102_0339</a>
+<a href="archive/20260101_0329.html">20260101_0329</a>
+<a href="archive/20251231_0333.html">20251231_0333</a>
+<a href="archive/20251230_0332.html">20251230_0332</a>
+<a href="archive/20251229_0329.html">20251229_0329</a>
+<a href="archive/20251228_0332.html">20251228_0332</a>
+<a href="archive/20251227_0329.html">20251227_0329</a>
+<a href="archive/20251226_0330.html">20251226_0330</a>
+<a href="archive/20251225_0329.html">20251225_0329</a>
+<a href="archive/20251224_0331.html">20251224_0331</a>
+<a href="archive/20251223_0332.html">20251223_0332</a>
+<a href="archive/20251222_0328.html">20251222_0328</a>
+<a href="archive/20251221_0329.html">20251221_0329</a>
+<a href="archive/20251220_0330.html">20251220_0330</a>
+<a href="archive/20251219_0330.html">20251219_0330</a>
+<a href="archive/20251218_0345.html">20251218_0345</a>
+<a href="archive/20251217_0332.html">20251217_0332</a>
+<a href="archive/20251216_0333.html">20251216_0333</a>
+<a href="archive/20251215_0333.html">20251215_0333</a>
+<a href="archive/20251214_0327.html">20251214_0327</a>
+<a href="archive/20251212_0333.html">20251212_0333</a>
+<a href="archive/20251211_0331.html">20251211_0331</a>
+<a href="archive/20251210_0332.html">20251210_0332</a>
+<a href="archive/20251209_0331.html">20251209_0331</a>
+<a href="archive/20251208_0328.html">20251208_0328</a>
+<a href="archive/20251207_0327.html">20251207_0327</a>
+<a href="archive/20251206_0330.html">20251206_0330</a>
+<a href="archive/20251205_0331.html">20251205_0331</a>
+<a href="archive/20251204_0331.html">20251204_0331</a>
+<a href="archive/20251203_0333.html">20251203_0333</a>
+<a href="archive/20251202_0335.html">20251202_0335</a>
+<a href="archive/20251201_0328.html">20251201_0328</a>
+<a href="archive/20251130_0327.html">20251130_0327</a>
+<a href="archive/20251129_0328.html">20251129_0328</a>
+<a href="archive/20251128_0327.html">20251128_0327</a>
+<a href="archive/20251127_0327.html">20251127_0327</a>
+<a href="archive/20251126_0329.html">20251126_0329</a>
+<a href="archive/20251125_0327.html">20251125_0327</a>
+<a href="archive/20251124_0327.html">20251124_0327</a>
+<a href="archive/20251123_0326.html">20251123_0326</a>
+<a href="archive/20251122_0328.html">20251122_0328</a>
+<a href="archive/20251121_0328.html">20251121_0328</a>
+<a href="archive/20251120_0329.html">20251120_0329</a>
+<a href="archive/20251119_0328.html">20251119_0328</a>
+<a href="archive/20251118_0328.html">20251118_0328</a>
+<a href="archive/20251117_0326.html">20251117_0326</a>
+<a href="archive/20251116_0325.html">20251116_0325</a>
+<a href="archive/20251115_0327.html">20251115_0327</a>
+<a href="archive/20251114_0328.html">20251114_0328</a>
+<a href="archive/20251113_0330.html">20251113_0330</a>
+<a href="archive/20251112_0329.html">20251112_0329</a>
+<a href="archive/20251111_0328.html">20251111_0328</a>
+<a href="archive/20251110_0325.html">20251110_0325</a>
+<a href="archive/20251109_0326.html">20251109_0326</a>
+<a href="archive/20251108_0328.html">20251108_0328</a>
+<a href="archive/20251107_0328.html">20251107_0328</a>
+<a href="archive/20251106_0329.html">20251106_0329</a>
+<a href="archive/20251105_0326.html">20251105_0326</a>
+<a href="archive/20251104_0327.html">20251104_0327</a>
+<a href="archive/20251103_0324.html">20251103_0324</a>
+<a href="archive/20251102_0326.html">20251102_0326</a>
+<a href="archive/20251101_0324.html">20251101_0324</a>
+<a href="archive/20251031_0328.html">20251031_0328</a>
+<a href="archive/20251030_0330.html">20251030_0330</a>
+<a href="archive/20251029_0329.html">20251029_0329</a>
+<a href="archive/20251028_0329.html">20251028_0329</a>
+<a href="archive/20251027_0322.html">20251027_0322</a>
+<a href="archive/20251026_0327.html">20251026_0327</a>
+<a href="archive/20251025_0331.html">20251025_0331</a>
+<a href="archive/20251024_0329.html">20251024_0329</a>
+<a href="archive/20251023_0329.html">20251023_0329</a>
+<a href="archive/20251022_0330.html">20251022_0330</a>
+<a href="archive/20251021_0331.html">20251021_0331</a>
+<a href="archive/20251020_0328.html">20251020_0328</a>
+<a href="archive/20251019_0321.html">20251019_0321</a>
+<a href="archive/20251018_0327.html">20251018_0327</a>
+<a href="archive/20251017_0320.html">20251017_0320</a>
+<a href="archive/20251016_0328.html">20251016_0328</a>
+<a href="archive/20251015_0328.html">20251015_0328</a>
+<a href="archive/20251014_0323.html">20251014_0323</a>
+<a href="archive/20251011_0328.html">20251011_0328</a>
+<a href="archive/20251010_0330.html">20251010_0330</a>
+<a href="archive/20251009_0321.html">20251009_0321</a>
+<a href="archive/20251008_0343.html">20251008_0343</a>
+<a href="archive/20251007_0353.html">20251007_0353</a>
+<a href="archive/20251006_0325.html">20251006_0325</a>
+<a href="archive/20251005_0350.html">20251005_0350</a>
+<a href="archive/20251004_0352.html">20251004_0352</a>
+<a href="archive/20251003_0352.html">20251003_0352</a>
+<a href="archive/20251002_0356.html">20251002_0356</a>
+<a href="archive/20251001_0321.html">20251001_0321</a>
+<a href="archive/20250925_0335.html">20250925_0335</a>
+<a href="archive/20250924_0350.html">20250924_0350</a>
+<a href="archive/20250923_0348.html">20250923_0348</a>
+<a href="archive/20250922_0346.html">20250922_0346</a>
+<a href="archive/20250921_0345.html">20250921_0345</a>
+<a href="archive/20250920_0342.html">20250920_0342</a>
+<a href="archive/20250919_0346.html">20250919_0346</a>
+<a href="archive/20250918_0342.html">20250918_0342</a>
+<a href="archive/20250917_0336.html">20250917_0336</a>
+<a href="archive/20250916_0333.html">20250916_0333</a>
+<a href="archive/20250915_0333.html">20250915_0333</a>
+<a href="archive/20250914_0328.html">20250914_0328</a>
+<a href="archive/20250913_0322.html">20250913_0322</a>
+<a href="archive/20250912_0335.html">20250912_0335</a>
+<a href="archive/20250911_0337.html">20250911_0337</a>
+<a href="archive/20250910_0338.html">20250910_0338</a>
+<a href="archive/20250909_0341.html">20250909_0341</a>
+<a href="archive/20250908_0342.html">20250908_0342</a>
+<a href="archive/20250907_0333.html">20250907_0333</a>
+<a href="archive/20250906_0350.html">20250906_0350</a>
+<a href="archive/20250905_0319.html">20250905_0319</a>
+<a href="archive/20250904_0323.html">20250904_0323</a>
+<a href="archive/20250903_0355.html">20250903_0355</a>
+<a href="archive/20250902_0325.html">20250902_0325</a>
+<a href="archive/20250901_0355.html">20250901_0355</a>
+<a href="archive/20250831_0355.html">20250831_0355</a>
+<a href="archive/20250830_0356.html">20250830_0356</a>
+<a href="archive/20250829_0355.html">20250829_0355</a>
+<a href="archive/20250828_0333.html">20250828_0333</a>
+<a href="archive/20250827_1654.html">20250827_1654</a>
+<a href="archive/20250827_1602.html">20250827_1602</a>
+<a href="archive/20250827_1557.html">20250827_1557</a>
+<a href="archive/20250827_0320.html">20250827_0320</a>
+<a href="archive/20250826_0320.html">20250826_0320</a>
+<a href="archive/20250825_1752.html">20250825_1752</a>
+<a href="archive/20250825_1709.html">20250825_1709</a>
+<a href="archive/20250825_1652.html">20250825_1652</a>
+<a href="archive/20250825_1647.html">20250825_1647</a>
+<a href="archive/20250825_1645.html">20250825_1645</a>
+<a href="archive/20250825_1631.html">20250825_1631</a>
+<a href="archive/20250825_1606.html">20250825_1606</a>
+<a href="archive/20250825_1559.html">20250825_1559</a>
+<a href="archive/20250825_1558.html">20250825_1558</a>
+<a href="archive/20250825_1556.html">20250825_1556</a>
+<a href="archive/20250825_1531.html">20250825_1531</a>
+<a href="archive/20250825_1525.html">20250825_1525</a>
+<a href="archive/20250825_1516.html">20250825_1516</a>
+<a href="archive/20250825_1450.html">20250825_1450</a>
+<a href="archive/20250825_1444.html">20250825_1444</a>
+<a href="archive/20250825_1438.html">20250825_1438</a>
+<a href="archive/20250825_1414.html">20250825_1414</a>
+<a href="archive/20250825_1413.html">20250825_1413</a>
+<a href="archive/20250825_1410.html">20250825_1410</a>
+<a href="archive/20250825_1408.html">20250825_1408</a>
+<a href="archive/20250825_1405.html">20250825_1405</a>
+<a href="archive/20250825_1401.html">20250825_1401</a>
+<a href="archive/20250825_1355.html">20250825_1355</a>
+<a href="archive/20250825_1347.html">20250825_1347</a>
+<a href="archive/20250825_1345.html">20250825_1345</a>
+<a href="archive/20250825_1344.html">20250825_1344</a>
+<a href="archive/20250825_1343.html">20250825_1343</a>
+<a href="archive/20250825_1340.html">20250825_1340</a>
+<a href="archive/20250825_1339.html">20250825_1339</a>
+<a href="archive/20250825_1333.html">20250825_1333</a>
+<a href="archive/20250825_1323.html">20250825_1323</a>
+<a href="archive/20250825_1317.html">20250825_1317</a>
+<a href="archive/20250825_1243.html">20250825_1243</a>
+<a href="archive/20250824_0342.html">20250824_0342</a>
+<a href="archive/20250823_0343.html">20250823_0343</a>
+<a href="archive/20250823_0142.html">20250823_0142</a>
+<a href="archive/20250822_2331.html">20250822_2331</a>
+<a href="archive/20250822_2308.html">20250822_2308</a>
+<a href="archive/20250822_2258.html">20250822_2258</a>
+<a href="archive/20250822_2241.html">20250822_2241</a>
+<a href="archive/20250822_2228.html">20250822_2228</a>
+<a href="archive/20250822_2206.html">20250822_2206</a>
+<a href="archive/20250822_2147.html">20250822_2147</a>
+<a href="archive/20250822_2111.html">20250822_2111</a>
+<a href="archive/20250822_1259.html">20250822_1259</a>
+<a href="archive/20250822_1233.html">20250822_1233</a>
+<a href="archive/20250822_1229.html">20250822_1229</a>
+<a href="archive/20250822_1223.html">20250822_1223</a>
+<a href="archive/20250822_1210.html">20250822_1210</a>
+<a href="archive/20250822_1201.html">20250822_1201</a>
+<a href="archive/20250822_1111.html">20250822_1111</a>
+<a href="archive/20250822_1058.html">20250822_1058</a>
+<a href="archive/20250822_1052.html">20250822_1052</a>
+<a href="archive/20250822_1045.html">20250822_1045</a>
+<a href="archive/20250822_0657.html">20250822_0657</a>
+<a href="archive/20250822_0553.html">20250822_0553</a></div>
+    </details>
+    <div class="footer">Generated by arxiv-tracker</div>
+  </div>
+</body></html>
