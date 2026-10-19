@@ -1,0 +1,894 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arXiv 论文速递</title><style>
+:root {
+  --bg:#f8fafc; --card:#ffffff; --text:#0f172a; --muted:#667085; --border:#e5e7eb; --acc:#2563eb;
+}
+:root[data-theme="dark"] {
+  --bg:#0b0f17; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --acc:#2563eb;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;}
+.container{max-width:900px;margin:0 auto;padding:18px;}
+.header{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:8px 0 16px;flex-wrap:wrap}
+h1{font-size:22px;margin:0}
+.badge{font-size:12px;color:#111827;background:var(--acc);padding:2px 8px;border-radius:999px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.title{font-weight:700;margin:0 0 6px 0;font-size:18px}
+.meta-line{color:var(--muted);font-size:13px;margin:2px 0}
+.links a{color:var(--acc);text-decoration:none;margin-right:12px}
+.detail{margin-top:10px;background:rgba(2,6,23,.03);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+summary{cursor:pointer;color:var(--acc)}
+.mono{white-space:pre-wrap;background:rgba(2,6,23,.03);border:1px solid var(--border);padding:10px;border-radius:10px}
+.row{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width: 860px) {
+  .row-2{grid-template-columns:1fr 1fr}
+}
+.footer{color:var(--muted);font-size:13px;margin:20px 0 10px}
+.hr{height:1px;background:var(--border);margin:14px 0}
+.history-list a{display:block;color:var(--acc);text-decoration:none;margin:4px 0}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--card);padding:6px 10px;border-radius:10px;cursor:pointer;color:var(--text)}
+.btn:hover{border-color:var(--acc)}
+</style>
+<script>
+(function() {
+  const root = document.documentElement;
+  function apply(t) {
+    if (t==='dark') root.setAttribute('data-theme','dark');
+    else if (t==='light') root.removeAttribute('data-theme');
+    else {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+  }
+  let t = localStorage.getItem('theme') || 'light';
+  if (!['light','dark','auto'].includes(t)) t='light';
+  apply(t);
+  window.__toggleTheme = function() {
+    let cur = localStorage.getItem('theme') || 'light';
+    if (cur==='light') cur='dark';
+    else if (cur==='dark') cur='auto';
+    else cur='light';
+    localStorage.setItem('theme', cur);
+    apply(cur);
+    const el=document.getElementById('theme-label');
+    if(el) el.textContent = cur.toUpperCase();
+  }
+  window.__expandAll = function(open) {
+    document.querySelectorAll('details').forEach(d => d.open = !!open);
+  }
+})();
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>arXiv 论文速递</h1>
+      <div style="display:flex;gap:10px;align-items:center">
+        
+<div class="controls">
+  <button class="btn" onclick="__toggleTheme()">Theme: <span id="theme-label" style="margin-left:6px">AUTO</span></button>
+  <button class="btn" onclick="__expandAll(true)">Expand All</button>
+  <button class="btn" onclick="__expandAll(false)">Collapse All</button>
+</div>
+
+        <span class="badge">2026-10-20 06:49</span>
+      </div>
+    </div>
+    <div class="hr"></div>
+    <div>Snapshot: 20261020_0649</div>
+    <div class="row"><div class="card">
+<div class="title">Coordination Matters: Process-Aware Evaluation of Cooperative Multi-Agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Maria Ana Cardei, Matthew Landers, Afsaneh Doryab</div>
+<div class="meta-line">First: 2026-05-07T16:50:53+00:00 · Latest: 2026-10-16T17:58:51+00:00</div>
+<div class="meta-line">Comments: Under review</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2605.06557v2">Abs</a> · <a href="https://arxiv.org/pdf/2605.06557v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Cooperative multi-agent reinforcement learning (MARL) benchmarks commonly emphasize aggregate outcomes such as return, success rate, or completion time. While essential, these metrics can obscure how agents coordinate and fail to distinguish policies that achieve similar outcomes through different interaction processes. We propose a process-aware evaluation framework that complements aggregate performance with diagnostics of interference, coordinated task completion, participation, and coordination efficiency. We evaluate the framework in STAT, a controlled spatial task-allocation testbed, and examine its broader applicability in two established cooperative MARL benchmarks. Across diverse value-based and actor-critic methods, we find policies with nearly identical return can exhibit substantial differences in coordination behavior. Controlled scaling in STAT reveals distinct process signatures for spatial, task, and agent scaling, while a reward-shaping ablation shows that explicitly penalizing assignment conflicts can alter coordination behavior with little change in task return. Results in the established benchmarks further show that the framework remains informative under different coordination mechanisms. These findings support process-aware evaluation as a complement to outcome-based benchmarking. The framework provides a common structure for selecting and interpreting environment-specific diagnostics that characterize not only what cooperative policies achieve, but how they coordinate to achieve it.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Cooperative multi-agent reinforcement learning (MARL) benchmarks commonly emphasize aggregate outcomes such as return, success rate, or completion time.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Frozen Models, Evolving Expertise: Model-Agnostic Learning from Deployment Experience for Multimodal Medical AI</div>
+<div class="meta-line">Authors: Yexiao He, Yucheng Tang, Pengfei Guo, Yufan He, Andriy Myronenko, Can Zhao, Ang Li, Daguang Xu, Dong Yang</div>
+<div class="meta-line">First: 2026-10-06T21:41:27+00:00 · Latest: 2026-10-16T17:58:30+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.09146v2">Abs</a> · <a href="https://arxiv.org/pdf/2610.09146v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) and vision-language models (VLMs) are usually frozen after deployment, so they do not learn from the cases they solve. This is especially concerning in medicine, where new clinical evidence, updated guidelines, and new therapies can change established practice. Fine-tuning can update the model, but it requires access to model weights and additional training. Parameter-free methods avoid training, but they may overfit a fixed validation set, lack reliable domain knowledge, or lose visual details by saving experience only as text. To address these limitations, we present a model-agnostic framework that allows frozen LLMs and VLMs to learn from deployment experience through three forms of external expertise: a Skill that guides reasoning and tool use, a Knowledge Memory that stores reliable facts supported by earlier cases or trusted external evidence, and a Multimodal Knowledge Base that keeps visual examples and guides the model to relate each retrieved case to the current image. Instead of relying on a fixed validation set, a validation strategy keeps an update only if it helps on new cases without degrading performance on earlier ones. Across six benchmarks covering clinical diagnosis, clinical workflows, medical reasoning, and medical and non-medical visual reasoning, and with four open-weight and closed-source base models, our framework improves performance during online deployment by up to 34.2% over the base model on medical tasks, generalizes to unseen cases, transfers to other models without further optimization, and works in non-medical domains.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) and vision-language models (VLMs) are usually frozen after deployment, so they do not learn from the cases they solve.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Behavioral Couplings: From Formation to Behavioral Emergence in Language Models</div>
+<div class="meta-line">Authors: Dongyoon Hahm, Woogyeol Jin, Dennis Wei, Yi Zhou, Nathalie Baracaldo, Kimin Lee</div>
+<div class="meta-line">First: 2026-10-16T17:58:08+00:00 · Latest: 2026-10-16T17:58:08+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23847v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23847v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Fine-tuning large language models (LLMs) can induce behaviors beyond those explicitly targeted. For example, training a model to respond more warmly can make it more sycophantic, and training it to write insecure code can cause broad misalignment on prompts unrelated to coding. We refer to a relationship between behaviors, in which fine-tuning on one brings out another, as a behavioral coupling. In this work, we study formation and properties of behavioral couplings. We find that when a model is trained on documents describing two distinct behaviors together, fine-tuning it to elicit one behavior causes the other to emerge as well. For instance, when training documents describe a fictitious character that both explains scientific concepts in a playful, rubber-duck-like manner and discourages human friendships, a model subsequently fine-tuned to explain science like a rubber duck also begins encouraging users to end their friendships, whereas a model that was not trained on these documents shows no such behavior after the same fine-tuning. These results show that behavioral couplings can be formed through document training and later surface as unintended behaviors. More concerningly, we find that couplings can compose. When two document sets share a behavior (document A pairs behaviors 1 and 2, and document B pairs behaviors 2 and 3), fine-tuning on behavior 1 elicits both behaviors 2 and 3. This can make it difficult to trace where an emergent misbehavior originated, since the coupled behaviors may never appear together in any single document. These findings suggest that preventing the unintended effects of later fine-tuning may require evaluation that goes beyond a model&#x27;s current behavior.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Fine-tuning large language models (LLMs) can induce behaviors beyond those explicitly targeted.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">TANGO: RNA Topology and Geometry Co-Design</div>
+<div class="meta-line">Authors: Tianmeng Hu, Biao Luo, Ke Li</div>
+<div class="meta-line">Venue: NeurIPS 2026</div>
+<div class="meta-line">First: 2026-10-14T14:37:51+00:00 · Latest: 2026-10-16T17:46:35+00:00</div>
+<div class="meta-line">Comments: NeurIPS 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.20277v2">Abs</a> · <a href="https://arxiv.org/pdf/2610.20277v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Designing RNA sequences that satisfy target tertiary-structure objectives is an important problem in RNA engineering, with broad applications in synthetic biology and therapeutics. Existing 3D RNA design methods have made substantial progress, but they largely treat the target fold as a geometry-only objective. This is incomplete for RNA, whose functional folds are specified not only by tertiary geometry but also by secondary base-pairing topology. We therefore formulate RNA inverse design as a topology-and-geometry co-design problem and propose TANGO, a multi-objective multi-agent reinforcement learning framework for this task. TANGO adopts a staged curriculum: it first learns a topology-aware policy from secondary-structure targets, then transfers this policy to tertiary-structure targets to train a general co-design model, and finally applies frontier-guided fine-tuning to refine target-specific trade-offs among secondary-structure fidelity, tertiary-structure fidelity, and sequence diversity. Experiments show that TANGO generates diverse and novel designs, improving tertiary- and secondary-structure performance by 18.3% and 52.7%, respectively, over the strongest baseline.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Designing RNA sequences that satisfy target tertiary-structure objectives is an important problem in RNA engineering, with broad applications in synthetic biology and therapeutics.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">CocoRNA: Collective RNA Design with Cooperative Multi-agent Reinforcement Learning</div>
+<div class="meta-line">Authors: Tianmeng Hu, Biao Luo, Ke Li</div>
+<div class="meta-line">Venue: ICML 2026</div>
+<div class="meta-line">First: 2026-10-16T17:43:25+00:00 · Latest: 2026-10-16T17:43:25+00:00</div>
+<div class="meta-line">Comments: ICML 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23820v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23820v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Designing RNA sequences that reliably fold into specific secondary structures is essential for understanding their biological functions but remains a challenging computational problem. We propose CocoRNA, a cooperative multi-agent reinforcement learning framework for RNA inverse design. CocoRNA simplifies the design task by decomposing it into smaller sub-problems, each solved collaboratively by multiple agents. This approach reduces the complexity of the problem and improves the exploration of design policies. During training, a centralized critic uses global structural information to guide the agents, enabling them to jointly optimize their design strategies. As a result, CocoRNA learns high-quality RNA design policies that generalize effectively to unseen structures without additional training. Experiments on the Rfam dataset demonstrate that CocoRNA substantially outperforms state-of-the-art methods in both success rate and design speed. Further experiments on other biological sequence design tasks highlight the effectiveness and broad potential of CocoRNA for complex design tasks.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Designing RNA sequences that reliably fold into specific secondary structures is essential for understanding their biological functions but remains a challenging computational problem.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Language steering in latent space to mitigate unintended code-switching</div>
+<div class="meta-line">Authors: Andrey Goncharov, Nikolai Kondusov, Alexey Zaytsev</div>
+<div class="meta-line">First: 2025-10-11T19:49:38+00:00 · Latest: 2026-10-16T17:02:53+00:00</div>
+<div class="meta-line">Comments: Published at AINL 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2510.13849v4">Abs</a> · <a href="https://arxiv.org/pdf/2510.13849v4">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multilingual Large Language Models (LLMs) often exhibit hallucinations such as unintended code-switching, reducing reliability in downstream tasks. We propose latent-space language steering, a lightweight inference-time method that identifies language directions via Principal Component Analysis (PCA) on parallel translations and steers token embeddings along these axes to control language identity. Our approach mitigates code-switching (reduced next-token distributional divergence by up to 55\%, reduced Code-Switching Index by 63--99\%) while preserving broad semantic direction with negligible computational overhead and requires only minimal parallel data for calibration. Additionally, we evaluate language classification using a single principal component (95-99\% accuracy) and further analyze the layer-wise evolution of language representations.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multilingual Large Language Models (LLMs) often exhibit hallucinations such as unintended code-switching, reducing reliability in downstream tasks.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Beyond Large Language Models: A Mental World Model Framework for Mental Modeling, Simulation, Evolution, and Interpretability</div>
+<div class="meta-line">Authors: Qingshi Wang</div>
+<div class="meta-line">First: 2026-10-16T16:42:11+00:00 · Latest: 2026-10-16T16:42:11+00:00</div>
+<div class="meta-line">Comments: 12 pages, 10 figures</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23722v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23722v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Understanding and simulating how subjective cognition and mental states emerge, evolve, and shape behavior is essential for advancing artificial intelligence toward deeper social cognition and general intelligence. Existing large language models (LLMs) and Theory of Mind (ToM) methods primarily infer mental states from linguistic information, lacking unified mechanisms for subjective world construction, cognitive-psychological interactions, dynamic evolution, and historical dependencies. This paper introduces the Mental World Model (MWM) and its implementation, the Multi-Branch Mental Evolution Architecture (MMEA), which explicitly constructs subjective worlds, models interactions between cognition and mental states, and simulates continuous mental evolution shaped by historical experiences. On DynToM and RecToM, MMEA achieves 96.48% and 94.00% accuracy, respectively, outperforming leading LLMs and specialized ToM methods. Additional experiments demonstrate improvements of 28.7, 39.3, and 16.6 percentage points in mental state and behavior prediction, long-sequence prediction, and implicit mental state inference, respectively. The results demonstrate that MMEA provides an interpretable framework for continuous mental modeling, enabling AI to move beyond surface-level semantic representations to infer individuals&#x27; underlying mental states from linguistic information and dynamically simulate their internal cognitive processes and evolution over time. MWM also provides a promising foundation for causal reasoning, personalized AI, sustained human-AI interaction, and future advances toward artificial general intelligence (AGI).</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Understanding and simulating how subjective cognition and mental states emerge, evolve, and shape behavior is essential for advancing artificial intelligence toward deeper social cognition and general intelligence.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">On the possibilities and limitations of LLM-based multi-agent systems for multi-criteria decision-making in healthcare operations management</div>
+<div class="meta-line">Authors: Marco Boresta, Tommaso Giovannelli, Sepehr Namirad, Giulia Riccardi</div>
+<div class="meta-line">First: 2026-10-16T16:05:15+00:00 · Latest: 2026-10-16T16:05:15+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23673v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23673v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multi-criteria models for healthcare operations need weights that express how stakeholders trade off patient waiting time, provider workload, and operating cost, but these weights are difficult to quantify. Teams of large language model (LLM) agents, each prompted to represent a stakeholder, have been used to supply them. We propose a framework for assessing the reliability of LLM-generated preferences as inputs to multi-objective optimization and quantifying how their uncertainty affects decisions. We study explicit preferences by asking agents to rate the importance of the criteria in an outpatient appointment scheduling problem, and implicit preferences by inferring trade-offs from the agents&#x27; pairwise choices between emergency department configurations. The computational experiments show that the explicit preferences respond to the clinic&#x27;s operating conditions and differ across roles, but deliberation among the agents can erase these differences, whereas simple averaging preserves them. The pairwise choices used to reveal the agents&#x27; implicit preferences depend largely on which option is presented first, and we find limited evidence that a statistical model using contextual information alongside presentation order predicts the agents&#x27; choices on new comparison pairs better than a model using presentation order alone. We then formulate robust weighted-sum optimization models to account for preference uncertainty. In most cases, these models select different schedules or configurations from those obtained using average preference weights. These results indicate that LLM-generated preferences need an audit of this kind before they are used as optimization weights in healthcare decision support.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multi-criteria models for healthcare operations need weights that express how stakeholders trade off patient waiting time, provider workload, and operating cost, but these weights are difficult to quantify.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">AgentRivet: an automated system for producing Rivet routines from journal publications</div>
+<div class="meta-line">Authors: Antonio J. Costa, Caterina Doglioni, Christian Gütschow, Andrew D. Pilkington, Sukanya Sinha</div>
+<div class="meta-line">First: 2026-06-11T16:22:40+00:00 · Latest: 2026-10-16T15:41:26+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2606.13535v5">Abs</a> · <a href="https://arxiv.org/pdf/2606.13535v5">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Particle physics collider experiments provide Rivet routines as part of the analysis preservation strategy for model-independent measurements. Rivet is a C++ toolkit that allow new theoretical models to be compared to the measurements, thus aiding the development and tuning of Monte Carlo event generators as well as searches for physics beyond the Standard Model. However, analysis coverage is known to be incomplete, with only 39% of measurements having documented and publicly available Rivet routines. In this article, we design and implement an automated workflow based on Large Language Models with the goal of providing the missing routines. This multi-step workflow, referred to as AgentRivet, extracts the physics analysis information from published papers and writes the missing Rivet routines, with intermediate code- and physics- reviews as part of an autonomous quality control. We report the results obtained using commercial Large Language Models, provided by OpenAI, Anthropic, and Google, for two recent measurements from the ATLAS and CMS experiments. We find that AgentRivet produces competent Rivet routines with few syntax errors. The physics fidelity of the routines is reasonable and follows the explanations given in the relevant publications. Nevertheless, physics-implementation issues do arise and are investigated using the artefacts produced by AgentRivet. The majority of physics implementation issues arise from subtle-but-ambiguous definitions in the given publication, although some models struggle to implement complex observables even when clear definitions are given.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Particle physics collider experiments provide Rivet routines as part of the analysis preservation strategy for model-independent measurements.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Deep LLM layers expose passage-level context in EEG during silent reading</div>
+<div class="meta-line">Authors: Ingo Marquardt, Anthilia Alchanat, Priyanka Jain</div>
+<div class="meta-line">First: 2026-10-16T15:41:19+00:00 · Latest: 2026-10-16T15:41:19+00:00</div>
+<div class="meta-line">Comments: 41 pages (including 23 pages of Supplementary Material), 12 figures (including 5 in Supplementary Material)</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23638v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23638v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded during silent reading, by aligning short EEG windows with hidden-state embeddings of the presented word taken from a large language model (LLM). That analysis contrasted two of the model&#x27;s 33 layers: the context-free input embedding and one mid-depth layer. Here we ask how EEG-decodable structure is distributed over the full depth of the language model. We trained one decoder per layer of Llama-3.1-8B, with and without a causal transformer over the sequence of EEG windows. We distinguish word-level decodability from a context-tracking component. Word-level decodability peaks in early layers and declines steadily towards the last layer. In contrast, the context-tracking component of the retrieval gain rises with depth, both with and without a causal transformer. Unexpectedly, a decoder that sees a single 0.5-s window at a time tracks the text passage too. Two new controls dissect this component. A target-geometry control, a synthetic predictor made of the true target plus noise calibrated to each decoder&#x27;s word-level accuracy, shows that context tracking is not a by-product of word decoding and target geometry. A control that permutes predictions across runs from either the same or from different sessions shows that most of the observed context-tracking is not caused by an EEG recording session signature. Instead, context tracking mostly follows the text. A single EEG window therefore carries passage-level information that a contextual target can absorb. The results locate word identity in the early layers of the language model, discourse state in the deeper layers, and make the choice of target layer a design dial for EEG language decoders.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">In a previous report we showed that a decoder can recover open-vocabulary word-level information from 19-channel EEG recorded during silent reading, by aligning short EEG windows with hidden-state embeddings of the presented word taken from a large language model (LLM).</div>
+</details>
+</div>
+<div class="card">
+<div class="title">PresenceBench: An Exploratory Evaluation of Large Language Model Adaptation to User State</div>
+<div class="meta-line">Authors: Peña Arroyo Gallego, Mauro Ruiz Moreno, Alejandro Acien, Sergio Romero-Tapiador, Teresa Arroyo-Gallego</div>
+<div class="meta-line">First: 2026-10-16T15:33:04+00:00 · Latest: 2026-10-16T15:33:04+00:00</div>
+<div class="meta-line">Comments: 33 pages, 6 figures, 13 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23625v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23625v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Presence-aware intelligence is the capacity of an AI system&#x27;s intelligence layer to adapt appropriately to the functional state of the person it serves (here readiness, flow, and stability) while preserving task quality and safety. We introduce PresenceBench, an instrument for measuring it. PresenceBench evaluates how the intelligence layer uses a supplied state, not how that state is sensed, and breaks the capability into measurable properties. Two are tested here. Receptivity: does the model take up the state and give a better response than with no signal? Specificity: does any improvement depend on the correct state, rather than on extra structured context? A third, adaptation across states, is a required endpoint not measured in this release. A five-arm causal design answers both questions, against each model&#x27;s own baseline and an equally structured mismatched-state control, scored by a correctness-gated human paired comparison. The exploratory evaluation covered four models across eighteen single-turn, six fixed three-turn and six simulated natural-conversation scenarios. Supplying a synthetic state, raw or translated into a response policy, gave human-preference point estimates above 0.5 for all four models (Claude Sonnet 5, DeepSeek V4 Pro, Gemini 3.6 Flash, GPT-5.6 Terra), with three of eight 95% intervals excluding chance. Specificity was not resolved: no per-model interval excluded chance, and the design cannot yet separate the state values from a generic instruction to adapt. Policy delivery reduced priced cost and output tokens against each model&#x27;s baseline; these are resource-use changes, not efficiency gains, because correctness non-inferiority was not established. Safety-floor failures were rare (13 of 360 cases), with a non-significant excess under policy delivery. We report the instrument, the frozen results, and the controls a confirmatory study needs.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Presence-aware intelligence is the capacity of an AI system&#x27;s intelligence layer to adapt appropriately to the functional state of the person it serves (here readiness, flow, and stability) while preserving task quality and safety.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Where Do Multi-Agent Systems Fail? Evidence-Grounded Diagnosis of Collective Mechanisms</div>
+<div class="meta-line">Authors: Zhengye Han</div>
+<div class="meta-line">First: 2026-09-30T01:45:41+00:00 · Latest: 2026-10-16T15:31:19+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2609.38761v2">Abs</a> · <a href="https://arxiv.org/pdf/2609.38761v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">When a multi-agent system answers correctly, it is tempting to conclude that its agents shared, checked, and used information as intended. Yet a system can break one of its collective mechanisms, the rules that govern how agents route, admit, store, and act on shared information, and still return the right answer, while a wrong answer rarely reveals which mechanism failed. We ask what evidence from an execution is sufficient to conclude that a particular mechanism was violated. Our answer is a diagnostic contract, which separates what counts as a violation from which execution records can establish one, and concludes that a violation is supported, ruled out, or unknown; removing records can make this conclusion unknown but never reverse it. We test contracts for four mechanisms by replaying executions from the step where a mechanism acts, once unchanged, once with the mechanism broken, and once with it restored. Broken mechanisms often left the answer correct. An LLM diagnoser detected many more violations from internal records than from public outputs, yet with identical records a generic prompt often claimed certainty the records did not support, which prompts stating the contracts largely avoided. The contracts also applied, in narrow form, to mechanisms in independently developed systems, but a diagnostic behavior that was nearly perfect on our benchmark degraded on an independently developed workflow. A correct outcome is therefore no substitute for records of how collective mechanisms operated, and agreement on one benchmark does not show that a diagnoser transfers to another system.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">When a multi-agent system answers correctly, it is tempting to conclude that its agents shared, checked, and used information as intended.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Activation-Efficient Fine-Tuning via Sequence-Compressed Low-Rank Subspaces</div>
+<div class="meta-line">Authors: Irene Tenison, Stella Ahn, Miriam Kim, Ebtisam Alshehri, Lalana Kagal</div>
+<div class="meta-line">First: 2026-04-03T17:05:33+00:00 · Latest: 2026-10-16T15:29:14+00:00</div>
+<div class="meta-line">Comments: Accepted to AACL 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2604.22783v2">Abs</a> · <a href="https://arxiv.org/pdf/2604.22783v2">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Parameter-Efficient Fine-Tuning (PEFT) has become the standard approach for adapting large language models (LLMs). However, despite reducing trainable parameter counts, many PEFT methods remain memory-bound by token-level activation intermediates that scale linearly with sequence length, limiting their practicality for long-context and on-device adaptation. Unlike prior memory-efficient PEFT approaches that preserve token-level adapter activations, LARS (Low-memory Activation-Rank Subspace) reduces the sequence-length scaling of stored adapter activation intermediates from O(BSRL) to O(BRL) by performing adaptation within a sequence-level low-rank subspace. Through pooled feature extraction, low-rank subspace modulations, and residual projection, LARS reduces the overall memory footprint by 23% on GPUs and 47.8% on CPUs relative to LoRA at S = 1024, with relative savings increasing with context length. Experiments across reasoning, understanding, long-context, retrieval, and token-level tasks show that LARS maintains competitive performance relative to LoRA while substantially improving memory efficiency. Beyond GPUs, LARS also reduces average CPU power and energy consumption per optimisation step by 22.43% and 22.06%, respectively. These results demonstrate that activation-efficient adaptation provides a practical path toward resource-constrained and on-device fine-tuning of LLMs.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Parameter-Efficient Fine-Tuning (PEFT) has become the standard approach for adapting large language models (LLMs).</div>
+</details>
+</div>
+<div class="card">
+<div class="title">From Trajectories to Differentiated Skills: Cognitive Differentiation for Self-Improving Agents</div>
+<div class="meta-line">Authors: Yewei Zhao, Derong Xu, Wei Chen, Yin Xu, Peilun Zhou, Xiaohan Wang, Guojun Yin, Wei Lin, Mingjun Xiao</div>
+<div class="meta-line">First: 2026-10-16T15:16:56+00:00 · Latest: 2026-10-16T15:16:56+00:00</div>
+<div class="meta-line">Comments: 22 pages, 7 figures, 17 tables, including appendices</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23599v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23599v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model (LLM) agents tackle complex tasks through reasoning and interaction with external environments. Agent skills provide persistent, transferable capabilities that guide task planning, inform contextual decisions, support tool use, and enable executable procedures. Yet existing skill-evolution methods largely organize knowledge around skill artifacts, overlooking the functional heterogeneity within individual skills and its implications for knowledge maintenance and use. Inspired by cognitive science, we propose Cognitive Differentiation in Skill Evolution (CDSE), which evolves a unified skill through four functionally distinct yet coordinated components: Meta, Experience, Tool, and Script. CDSE extracts evidence-grounded semantic gradients from successful and failed trajectories, consolidates them by functional role, and applies component-specific updates and validation with cross-component coordination and adaptive invocation. An analysis of 500 top-ranked skill packages shows that 96.8% contain knowledge spanning at least two functional roles. Across six benchmarks, three agent models, and two execution harnesses, CDSE achieves the highest scores in all 36 settings, improving over the Base agent by 7.6 percentage points and the strongest competing method in each setting by 2.6 points on average. Ablation studies further support the importance of functional differentiation and adaptive invocation.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language model (LLM) agents tackle complex tasks through reasoning and interaction with external environments.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Darwin-Claw: Environment-Adaptive Experience Consolidation for Recursively Self-Evolving Agents</div>
+<div class="meta-line">Authors: Mingze Yin, Xiaohan Wang, Dian Li, Longfei Luo, Jiahong Yan, Yiheng Zhu, Chang-Yu Hsieh</div>
+<div class="meta-line">First: 2026-10-16T14:57:21+00:00 · Latest: 2026-10-16T14:57:21+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23574v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23574v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">While Large Language Model (LLM) agents have demonstrated remarkable capabilities across complex tasks, they predominantly operate in isolated sessions, lacking the ability to continually learn from historical interactions or adapt to user-specific environments. Existing self-evolution paradigms often indiscriminately inject raw interaction trajectories into memory or skill modules, leading to obscured behavioral patterns and compromised update controllability. Furthermore, as foundational LLM reasoning improves, the bottleneck for agentic evolution shifts from accumulating generic knowledge to effectively managing situational experience. To address this, we propose Darwin-Claw, an environment-adaptive self-evolving framework that systematically distills episodic experiences to drive the comprehensive evolution of operational skills and durable memory. Theoretically grounded in an iterative agent-actor and evolver-critic co-adaptation, Darwin-Claw introduces a Hierarchical Experience Consolidation System that extracts fine-grained error attributions and generalizes them into dynamically updated prototype vectors. This structured situational experience serves as interaction patches for context-sensitive perception and explicit optimization signals for skill refinement. Practically, Darwin-Claw is a readily deployable, automated framework compatible with mainstream agent systems without requiring manual curation. Extensive experiments on WildClawBench demonstrate that Darwin-Claw yields substantial performance improvements, establishing a controllable and stable pathway for the continual, user-centric adaptation of autonomous agents in real-world ecosystems.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">While Large Language Model (LLM) agents have demonstrated remarkable capabilities across complex tasks, they predominantly operate in isolated sessions, lacking the ability to continually learn from historical interactions or adapt to user-specific environments.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">SkillBrowser: Selective Skill Exposure for Scalable Skill-Using Agents</div>
+<div class="meta-line">Authors: Jin Ye, Yifan Jiang, Lan-zhe Guo</div>
+<div class="meta-line">Venue: ACL</div>
+<div class="meta-line">First: 2026-10-16T14:44:01+00:00 · Latest: 2026-10-16T14:44:01+00:00</div>
+<div class="meta-line">Comments: 23 pages, 3 figures. Submitted to ACL Rolling Review, October 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23554v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23554v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language model agents increasingly rely on skills to extend their capabilities in complex tasks. However, scalable skill use requires Selective Skill Exposure (SSE): providing relevant procedural content when needed while avoiding unnecessary exposure that may disrupt reasoning. Existing paradigms fall short in complementary ways. Progressive disclosure exposes metadata for a growing skill library, introducing context pollution; retrieval limits catalog exposure, but static retrieval from the initial task query may be misaligned with capability needs that emerge during reasoning and may still inject unnecessary skills. We propose SkillBrowser, a Meta-Skill-managed framework that enables an agent to identify current capability needs, formulate targeted queries, and selectively load skills on demand. Across six SRA-Bench subsets and five LLMs, SkillBrowser improves aggregate accuracy over static retrieval and LLM-based selection, including multi-step tool use, and mitigates accuracy degradation on already-solvable instances. Benefits remain model- and task-dependent, with under-invocation of useful skills and additional latency as key limitations. These results demonstrate the viability of Meta-Skill-managed SSE for scalable skill repositories.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language model agents increasingly rely on skills to extend their capabilities in complex tasks.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Towards Reliable Truth-Aligned Uncertainty Estimation in Large Language Models</div>
+<div class="meta-line">Authors: Ponhvoan Srey, Quang Minh Nguyen, Xiaobao Wu, Anh Tuan Luu</div>
+<div class="meta-line">Venue: EMNLP</div>
+<div class="meta-line">First: 2026-04-01T03:42:16+00:00 · Latest: 2026-10-16T14:40:44+00:00</div>
+<div class="meta-line">Comments: Accepted to EMNLP Findings 2026</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2604.00445v2">Abs</a> · <a href="https://arxiv.org/pdf/2604.00445v2">PDF</a> · <a href="https://github.com/ponhvoan/TruthAnchor/">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Uncertainty estimation (UE) aims to quantify uncertainty in large language model (LLM) outputs to flag potential hallucinations and support reliable deployment. However, UE metrics often exhibit unstable performance across models and datasets, limiting their practical utility. We formalise this phenomenon as proxy failure, arising because UE metrics are derived from model behaviour rather than being explicitly grounded in factual correctness. We show that when mutual information between a UE score and correctness is low, the score&#x27;s discriminability must be close to chance. To address this, we propose Truth AnChoring (TAC), a lightweight post-hoc calibration method that maps raw UE scores to truth-aligned correctness probabilities. Even with noisy and few-shot supervision, TAC continues to improve calibration, providing a practical calibration protocol. Our findings highlight the limitations of treating heuristic UE metrics as direct indicators of uncertainty about factual correctness, and position our TAC as a principled step toward more reliable uncertainty estimation for LLMs. The code repository is available at https://github.com/ponhvoan/TruthAnchor/.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Uncertainty estimation (UE) aims to quantify uncertainty in large language model (LLM) outputs to flag potential hallucinations and support reliable deployment.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Truth in Contrast: Calibrated Factual Evidence from Language Model Likelihoods</div>
+<div class="meta-line">Authors: Ponhvoan Srey, Jason Lucas, Pittawat Taveekitworachai, Junyoung Lee, Anh Tuan Luu</div>
+<div class="meta-line">First: 2026-10-16T14:27:04+00:00 · Latest: 2026-10-16T14:27:04+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23527v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23527v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large Language Models (LLMs) encode substantial factual knowledge. Yet, estimating confidence in factual claims reliably remains challenging. We study likelihood-based factual confidence from the complementary perspectives of discrimination and calibration across multilingual factual statements. Specifically, we instantiate contrastive generative likelihoods as Contrastive Factual Evidence (CFE), which compares the likelihood of the same claim under competing factual and non-factual conditions, and derive its probabilistic counterpart, the Contrastive Factual Posterior (CFP). We show analytically that CFP calibration depends on the differential error between the two surrogate conditionals, allowing errors shared across them to cancel and yield tighter calibration bounds. Empirically, CFP substantially improves calibration while maintaining factual discrimination comparable to its strongest competitor. Nonetheless, discrimination is uniformly weak across methods in lower-resource languages, which simultaneously undermines the utility of the measured calibration. To this end, we interpret a likelihood geometry, within which an evidence-bearing direction is induced, along with an orthogonal evidence-invariant direction. In our investigation, we selectively align target-language claims with stronger English evidence only along the factual-evidence direction, improving discrimination and open-ended factual generation without target-language labels.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large Language Models (LLMs) encode substantial factual knowledge.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Trapped in Your Story: Evaluating Narrative-Induced Sycophancy in Large Language Models</div>
+<div class="meta-line">Authors: Runtai Yang, Dandan Zhu, Kaiwei Zhang, Guangtao Zhai</div>
+<div class="meta-line">First: 2026-10-16T14:26:44+00:00 · Latest: 2026-10-16T14:26:44+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23525v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23525v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) are known to exhibit sycophancy by adjusting their responses toward users&#x27; expressed views. However, real users often justify their opinions through reasons, personal experiences, causal explanations, and broader narratives, raising the question of whether such narratives can further steer model judgments. We construct a controlled benchmark of 500 debatable questions across ten domains, where the user stance is held fixed while its justification is systematically varied without introducing new task-relevant evidence. Each question is instantiated under 11 matched conditions: one neutral baseline and five mirrored narrative levels for each of two opposing positions, yielding 5,500 evaluation instances. We evaluate seven LLMs and observe substantial differences in narrative-induced agreement. The effect is not monotonic with narrative elaboration: personal experience can reduce agreement, whereas causal framing and worldview-based synthesis increase it. Controlled GPT-5.1 ablations further show that causal framing produces the strongest positive effect, while claim-preserving bullet presentation also increases agreement over paragraph form. These findings suggest that sycophancy is shaped not only by user stance, but also by how supporting explanations are structured and presented.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) are known to exhibit sycophancy by adjusting their responses toward users&#x27; expressed views.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">LocalIntent: Outcome-Specific Structured Generation for Backend-Compatible Smart Building Automation with Local LLMs</div>
+<div class="meta-line">Authors: Tianyang Liu, Jiayue Wang, Zhanhao Cheng, Changyang Wang, Shaoshu Zhu, Zhenghao Wu, Hadi Tabatabaee Malazi</div>
+<div class="meta-line">First: 2026-10-16T14:19:22+00:00 · Latest: 2026-10-16T14:19:22+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23511v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23511v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Locally deployed large language models (LLMs) can reduce reliance on remote cloud services for natural language smart building automation, but backend-facing processing requires correct outcome selection, alignment with local capabilities, and valid structured outputs. We investigate whether a complete outcome-specific prompting design improves compact-model outputs beyond generic route-then-generate prompting. The proposed LocalIntent approach routes requests to ordinary or persistent-rule branches: the former produces commands, clarifications, or rejections, while the latter generates trigger-action rules, followed by deterministic validation. We evaluate four locally executed Gemma and Qwen models spanning 2B-9B parameters on 101 non-persistent and 54 persistent-rule records, comparing Monolithic prompting, generic two-stage prompting, LocalIntent, and validation-guided repair. Across the evaluated datasets, LocalIntent achieves higher intent understanding, device identification, and action/parameter correctness than generic two-stage prompting, while clarification/mode correctness remains model-dependent. The largest gains occur for rules, where LocalIntent improves intent understanding from 26.4% to 80.6%, device identification from 59.3% to 84.7%, rule-mode correctness from 49.1% to 98.6%, and action/parameter correctness from 5.6% to 44.9%. For non-persistent requests, pooled gains are smaller: intent understanding increases from 39.6% to 53.2%, and action/parameter correctness from 30.7% to 42.8%.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Locally deployed large language models (LLMs) can reduce reliance on remote cloud services for natural language smart building automation, but backend-facing processing requires correct outcome selection, alignment with local capabilities, and valid structured outputs.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Test-Time Scaling with Diffusion Language Models via Reward-Guided Stitching</div>
+<div class="meta-line">Authors: Roy Miles, Aysim Toker, Andreea-Maria Oncescu, Jiankang Deng, Ismail Elezi</div>
+<div class="meta-line">Venue: NeurIPS 2026</div>
+<div class="meta-line">First: 2026-02-26T11:08:39+00:00 · Latest: 2026-10-16T13:55:50+00:00</div>
+<div class="meta-line">Comments: NeurIPS 2026. Code available at https://github.com/roymiles/diffusion-stitching</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2602.22871v3">Abs</a> · <a href="https://arxiv.org/pdf/2602.22871v3">PDF</a> · <a href="https://github.com/roymiles/diffusion-stitching">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Reasoning with large language models often benefits from generating multiple chains-of-thought, but existing aggregation strategies are typically trajectory-level (e.g., selecting the best trace or voting on the final answer), discarding useful intermediate work from partial or &quot;nearly correct&quot; attempts. We propose Stitching Noisy Diffusion Thoughts, a self-consistency framework that turns cheap diffusion-sampled reasoning into a reusable pool of step-level candidates. Given a problem, we (i) sample many diverse, low-cost reasoning trajectories using a masked diffusion language model, (ii) score every intermediate step with an off-the-shelf process reward model (PRM), and (iii) stitch these highest-quality steps across trajectories into a composite rationale. This rationale is then used to recompute only the final answer. This modular pipeline separates exploration (diffusion) from evaluation and solution synthesis, avoiding monolithic unified hybrids while preserving broad search. Across math reasoning benchmarks, we find that step-level recombination is most beneficial on harder problems, and ablations highlight the importance of the final solver in converting stitched but imperfect rationales into accurate answers. Using low-confidence diffusion sampling with parallel, independent rollouts, our training-free framework improves average accuracy by up to 23.8% across six math and coding tasks. At the same time, it achieves up to a 1.8x latency reduction relative to both traditional diffusion models (e.g., Dream, LLaDA) and unified architectures (e.g., TiDAR). The code is available https://github.com/roymiles/diffusion-stitching</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Reasoning with large language models often benefits from generating multiple chains-of-thought, but existing aggregation strategies are typically trajectory-level (e.g., selecting the best trace or voting on the final answer), discarding useful intermediate work from partial or &quot;nearly correct&quot; attempts.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">S-GAP: Stealthy Graph Attack Primitives for Graph Large Language Models</div>
+<div class="meta-line">Authors: Wenda Li, Tongya Zheng, Shunyu Liu, Hanyang Yuan, Kaixuan Chen, Yu Wang, Yuchen Ying, Haoze Jiang, Huan Li, Gang Chen, Zujie Ren</div>
+<div class="meta-line">First: 2026-10-16T13:45:23+00:00 · Latest: 2026-10-16T13:45:23+00:00</div>
+<div class="meta-line">Comments: 8 pages, 4 figures, 3 tables</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23465v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23465v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Graph Large Language Models (GraphLLMs) enable powerful semantic understanding and reasoning over Text-Attributed Graphs (TAGs), while their semantic reasoning may exhibit vulnerabilities to perturbations in node text and graph structure under adversarial attack evaluation. Existing attacks typically construct textual and structural perturbations in separate stages guided by distinct realization intents. However, this separation results in attack-intent fragmentation, causing semantic incoherence between the two perturbation types, thereby undermining attack stealth and making them easier for GraphLLMs to identify and disregard, ultimately weakening attack effectiveness. To avoid attack-intent fragmentation, we propose the Graph Attack Primitive (GAP), an atomic semantic representation that unifies textual and structural perturbations under a coherent attack intent. By carefully calibrating the semantic composition of a GAP, we can achieve strong attack effectiveness while maintaining sufficient attack stealth. Furthermore, we introduce S-GAP (Stealthy GAP), a multi-agent framework that iteratively refines the semantic content of the GAP. The framework unifies GAP planning and realization and continuously refines this process through surrogate evaluation and textual feedback. Extensive experiments across four datasets, three GraphLLMs, and two attack settings show that S-GAP improves ASR over the strongest baselines by 7.02% on average while producing more relationally plausible perturbations, exposing critical vulnerabilities in current GraphLLMs and motivating more robust defenses.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Graph Large Language Models (GraphLLMs) enable powerful semantic understanding and reasoning over Text-Attributed Graphs (TAGs), while their semantic reasoning may exhibit vulnerabilities to perturbations in node text and graph structure under adversarial attack evaluation.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Cross-Layer Attention Probing for Fine-Grained Hallucination Detection</div>
+<div class="meta-line">Authors: Malavika Suresh, Rahaf Aljundi, Ikechukwu Nkisi-Orji, Nirmalie Wiratunga</div>
+<div class="meta-line">First: 2025-09-04T14:37:34+00:00 · Latest: 2026-10-16T13:07:39+00:00</div>
+<div class="meta-line">Comments: Published at the TRUST-AI workshop, ECAI 2025</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2509.09700v2">Abs</a> · <a href="https://arxiv.org/pdf/2509.09700v2">PDF</a> · <a href="https://github.com/itsmemala/CLAP">Code1</a> · <a href="https://huggingface.co/huggingface">Code2</a> · <a href="https://huggingface.co/docs/hub/spaces">Code3</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">With the large-scale adoption of Large Language Models (LLMs) in various applications, there is a growing reliability concern due to their tendency to generate inaccurate text, i.e. hallucinations. In this work, we propose Cross-Layer Attention Probing (CLAP), a novel activation probing technique for hallucination detection, which processes the LLM activations across the entire residual stream as a joint sequence. Our empirical evaluations using five LLMs and three tasks show that CLAP improves hallucination detection compared to baselines on both greedy decoded responses as well as responses sampled at higher temperatures, thus enabling fine-grained detection, i.e. the ability to disambiguate hallucinations and non-hallucinations among different sampled responses to a given prompt. This allows us to propose a detect-then-mitigate strategy using CLAP to reduce hallucinations and improve LLM reliability compared to direct mitigation approaches. Finally, we show that CLAP maintains high reliability even when applied out-of-distribution. Code available at: https://github.com/itsmemala/CLAP</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">With the large-scale adoption of Large Language Models (LLMs) in various applications, there is a growing reliability concern due to their tendency to generate inaccurate text, i.e.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Two Minds Better Than One: Collaborative Reward Modeling for LLM Alignment</div>
+<div class="meta-line">Authors: Jiazheng Zhang, Wenqing Jing, Zizhuo Zhang, Zhiheng Xi, Shihan Dou, Rongxiang Weng, Jiahuan Li, Jingang Wang, Mingxu Chai, Shibo Hong, Yuming Yang, Chenhao Huang, Tao Gui, Qi Zhang, Xuanjing Huang</div>
+<div class="meta-line">First: 2025-05-15T10:58:20+00:00 · Latest: 2026-10-16T12:42:25+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2505.10597v3">Abs</a> · <a href="https://arxiv.org/pdf/2505.10597v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Reward models (RMs) are central to aligning large language models (LLMs) with human values, yet noisy preference feedback can induce reward misgeneralization through spurious correlations and overfitting. We characterize the training dynamics of preference pairs and uncover a distinctive optimization signature of noise: persistently high losses, sharp temporal fluctuations, and irregular gradient updates. Our analyses further show that excluding such pairs improves downstream alignment. In practice, however, reliable preferences are not known a priori, and self-filtering based on a model&#x27;s own training signals can amplify confirmation bias. To address this challenge, we introduce Collaborative Reward Modeling (CRM), an online framework for identifying reliable preferences. CRM couples cross-model peer review with curriculum learning: two RMs evaluate each other&#x27;s sample selections, while curriculum keeps their learning progress synchronized. Across extensive experiments, CRM improves RM generalization by up to 9.94 points on RewardBench under 40% preference noise. CRM further generalizes to implicit-reward alignment, offering a robust and broadly applicable approach to learning from imperfect feedback.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Reward models (RMs) are central to aligning large language models (LLMs) with human values, yet noisy preference feedback can induce reward misgeneralization through spurious correlations and overfitting.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Multi-Agent Reinforcement Learning-Based UAV Pathfinding for Obstacle Avoidance in Stochastic Environment</div>
+<div class="meta-line">Authors: Qizhen Wu, Kexin Liu, Lei Chen, Jinhu Lü</div>
+<div class="meta-line">First: 2023-10-25T14:21:22+00:00 · Latest: 2026-10-16T12:21:13+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2310.16659v3">Abs</a> · <a href="https://arxiv.org/pdf/2310.16659v3">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Traditional methods plan feasible paths for multiple agents in the stochastic environment. However, the methods&#x27; iterations with the changes in the environment result in computation complexities, especially for the decentralized agents without a centralized planner. Although reinforcement learning provides a plausible solution because of the generalization for different environments, it struggles with enormous agent-environment interactions in training. Here, we propose a novel centralized training with decentralized execution method based on multi-agent reinforcement learning, which is improved based on the idea of model predictive control. In our approach, agents communicate only with the centralized planner to make decentralized decisions online in the stochastic environment. Furthermore, considering the communication constraint with the centralized planner, each agent plans feasible paths through the extended observation, which combines information on neighboring agents based on the distance-weighted mean field approach. Inspired by the rolling optimization approach of model predictive control, we conduct multi-step value convergence in multi-agent reinforcement learning to enhance the training efficiency, which reduces the expensive interactions in convergence. Experiment results in both comparison, ablation, and real-robot studies validate the effectiveness and generalization performance of our method.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Traditional methods plan feasible paths for multiple agents in the stochastic environment.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Language Models Learn to Improve Language Models</div>
+<div class="meta-line">Authors: Minhua Lin, Zijun Wang, Zewen Liu, Zhaotian Weng, Bing He, Zhan Shi, Benoit Dumoulin, Xiang Zhang, Suhang Wang, Hanqing Lu</div>
+<div class="meta-line">First: 2026-10-16T11:51:00+00:00 · Latest: 2026-10-16T11:51:00+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23344v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23344v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) are increasingly used to automate AI research, including language-model (LM) development, offering a potential path toward recursive self-improvement. However, turning experimental feedback into a learned ability to propose effective improvements across models faces two challenges. First, training such an ability with real feedback is expensive: reinforcement learning (RL) requires evaluating tens of thousands of proposals, each potentially requiring a full model-training run. Even at ten GPU-hours per run, reward collection alone would consume hundreds of thousands of GPU-hours, motivating a cheaper surrogate. Second, surrogate feedback can become unreliable as policy optimization favors overestimated proposals when the proposal distribution shifts. To address these challenges, we propose LM2LM, which trains LLMs with RL to generate effective LM improvement proposals. To provide scalable feedback, we use a research world model (RWM), a frozen LLM that predicts proposal gains from real experimental records provided in context, as the reward model for RL. To maintain feedback reliability, we periodically execute current-policy proposals ranked highly by the RWM and add their measured outcomes to its context. Across eight autoregressive and diffusion LM development environments, real-execution evaluations on held-out tasks show that LM2LM enables Qwen3.8-27B to outperform GPT-6-sol, even when GPT-6-sol is given 300 real experimental records in context, while requiring 33% lower data-generation cost. LM2LM also generalizes to a model family unseen during training.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) are increasingly used to automate AI research, including language-model (LM) development, offering a potential path toward recursive self-improvement.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Self-Reflective Chain-of-Thought (SRCoT): Evidence-Based Text Generation via a Closed-Loop Retrieve--Reflect--Revise Pipeline on Edge LLMs</div>
+<div class="meta-line">Authors: Fabian Broszio, Michael Hoffmann, Adrian Paschke</div>
+<div class="meta-line">First: 2026-10-16T11:14:52+00:00 · Latest: 2026-10-16T11:14:52+00:00</div>
+<div class="meta-line">Comments: 28 pages, 2 figures. Extended technical account; a related brief report based on overlapping work has been submitted to Frontiers in Disaster and Emergency Medicine. The two manuscripts do not represent independent empirical studies</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23311v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23311v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Large language models (LLMs) can generate fluent outputs that lack source support or conflict with local operational constraints. We introduce Self-Reflective Chain-of-Thought (SRCoT), a modular architecture that organizes generation as a closed Retrieve--Reflect--Revise loop. SRCoT separates environment state, persistent knowledge, accumulated experience, and short-term memory into provenance-labeled stores. BM25 retrieval supplies local context; subsequent passes expose intermediate drafts, missing-information markers, follow-up queries, and optional claim--evidence mappings. These artifacts inform retrieval, revision, clarification, or abstention decisions. We examine the architecture through qualitative, trace-based case studies in two fully synthetic settings: emergency medical services and Munich-Sim, an emergency-operations simulation. Local prototype runs on an Apple M4-family laptop with 128 GB memory illustrate source-labeled documentation, explicit gap marking, and structured dispatch-style outputs. The traces also reveal provenance-assignment errors, incomplete evidence coverage, and unsafe assumptions that remain possible despite prompting constraints. These cases demonstrate report-level inspectability and local execution, not comparative superiority, hallucination reduction, clinical validity, or operational safety. The architecture separates retrieval and control from the model interface, but behavior across different models remains to be evaluated. SRCoT is a research proof of concept requiring human review, with its principal contribution lying in an inspectable control procedure rather than a new model.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Large language models (LLMs) can generate fluent outputs that lack source support or conflict with local operational constraints.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">MobileInject: Evaluating Reasoning-to-Action Security of MLLM-Based Mobile Agents under Cross-Modal Consistency Injection</div>
+<div class="meta-line">Authors: Songping Wang, Peiyang Li, Yi Huang, Fengting Li, Xuhao Ran, Yueming Lyu, Chao Feng, Caifeng Shan</div>
+<div class="meta-line">First: 2026-10-16T11:10:30+00:00 · Latest: 2026-10-16T11:10:30+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23307v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23307v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Multimodal large language model (MLLM)-based mobile agents are rapidly evolving from conversational assistants into autonomous systems that perceive, reason over, and act on smartphone environments. This capability also exposes a new security risk: adversaries can embed malicious objectives in cross-application mobile content and steer agent behavior through indirect multimodal injection. Although prompt injection has been studied in desktop and web settings, its cross-modal properties in mobile ecosystems remain poorly understood, and existing security analyses are still limited. To close this gap, we introduce MobileInject, the first benchmark for evaluating mobile agents against multimodal injection attacks and reasoning-to-action security risks. MobileInject provides a high-fidelity interactive mobile evaluation framework covering 11 scenarios, 9 security-risk categories, and 108 executable risk instances. It further introduces Cross-Modal Consistency Injection to exploit corroboration across modalities, two enhanced attack methods, Multi-Role Collaborative Deception and Reasoning-Camouflage Injection, to intensify trust manipulation and reasoning hijacking, and a Reasoning Security Diagnosis Framework for fine-grained failure analysis. Systematic experiments show that mobile agents are broadly vulnerable to multimodal injection, and that many failures stem from reasoning hijacking at early stages. These findings establish MobileInject as a systematic cross-modal benchmark for studying and improving the security of mobile agents. Code release details are provided in the Appendix Open Science section.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Multimodal large language model (MLLM)-based mobile agents are rapidly evolving from conversational assistants into autonomous systems that perceive, reason over, and act on smartphone environments.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Designing for Imperfect Prompts: A Simulation-Based Evaluation of an LLM-Based Enterprise Data Assistant Using Knowledge Graphs</div>
+<div class="meta-line">Authors: Niklas Wagner, Alexander Mädche</div>
+<div class="meta-line">Venue: Proceedings of the 34th European Conference on Information Systems (ECIS 2026), 5</div>
+<div class="meta-line">First: 2026-10-16T11:07:04+00:00 · Latest: 2026-10-16T11:07:04+00:00</div>
+<div class="meta-line">Comments: Published in the Proceedings of the 34th European Conference on Information Systems (ECIS 2026)</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23304v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23304v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">Enterprise data assistants using large language models (LLMs) promise democratized data access in organizations. Yet in our real-world deployment within the CFO unit&#x27;s data lake at an industry partner, we observed that business users frequently pose imperfect prompts that include domain-specific vocabulary and lack schema references or structural information. This Design Science Research study examines automatic resolution using a semantic mediation layer. We design and evaluate two design variants: schema-based mediation via semantic similarity, and knowledge graph-based mediation leveraging an automatically constructed knowledge graph from the data lake. Our simulation-based evaluation using real-world data, supported by LLM-as-a-Judge assessments and human validation, shows that knowledge graph-based mediation outperforms the schema-based approach in Precision, Recall, F1, and preserving user intent. We propose a design principle for knowledge graph-based mediation, demonstrating that structured knowledge representation bridges user intent and database structure and guides the design of enterprise data assistants across skill levels.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">Enterprise data assistants using large language models (LLMs) promise democratized data access in organizations.</div>
+</details>
+</div>
+<div class="card">
+<div class="title">Learning angles for quantum approximate optimization</div>
+<div class="meta-line">Authors: Johannes Jakubik, Isabelle Wittmann, Zaheed Gaffoor, Gciniwe Simphiwe Baloyi, Craig Mahlasi, Etienne Vos, Thomas Brunschwiler, Daniel J. Egger</div>
+<div class="meta-line">First: 2026-10-16T11:02:38+00:00 · Latest: 2026-10-16T11:02:38+00:00</div>
+<div class="links" style="margin-top:8px"><a href="https://arxiv.org/abs/2610.23296v1">Abs</a> · <a href="https://arxiv.org/pdf/2610.23296v1">PDF</a> · <a href="https://huggingface.co/huggingface">Code1</a> · <a href="https://huggingface.co/docs/hub/spaces">Code2</a></div>
+<details class="detail"><summary>Abstract</summary>
+<div class="mono">The Quantum Approximate Optimization Algorithm (QAOA) and its variants are leading algorithms to help solve challenging combinatorial optimization problems. QAOA maps these problems to Ising Hamiltonians such that their ground state is the desired solution. Candidate solutions are then drawn from a variational quantum circuit. The performance of QAOA hinges on a set of variational angles. However, finding good angles is an instance-specific and computationally expensive non-convex classical optimization task. Here, we learn the mapping from the problem instance to high-quality QAOA angles. Our learned models replace the per-instance optimization, that we call the solver, with a single forward pass that is several orders of magnitude faster than the solver with a near identical quality. Our models further generalize to unseen topologies such as Barabási-Albert and 2D grid graphs. Experiments on quantum hardware confirm that QAOA samples with angles produced by our open-source models are indistinguishable from solver angles. Crucially, models sensitive to the topology of the problem instance increase the quality of the QAOA angles. Our work amortizes a major bottleneck in QAOA by an up-front data generation and training cost. Importantly, this cost can be amortized over time in settings where many similar problems are optimized on a regular basis, as is often the case in applications for industry.</div></details>
+<details class="detail"><summary>Summary / 总结</summary>
+<div class="mono">The Quantum Approximate Optimization Algorithm (QAOA) and its variants are leading algorithms to help solve challenging combinatorial optimization problems.</div>
+</details>
+</div></div>
+    <details style="margin-top:16px" class="detail"><summary>History</summary>
+      <div class="history-list"><a href="archive/20261019_0517.html">20261019_0517</a>
+<a href="archive/20261018_0515.html">20261018_0515</a>
+<a href="archive/20261017_0556.html">20261017_0556</a>
+<a href="archive/20261016_0558.html">20261016_0558</a>
+<a href="archive/20261015_0604.html">20261015_0604</a>
+<a href="archive/20261014_0712.html">20261014_0712</a>
+<a href="archive/20261013_0909.html">20261013_0909</a>
+<a href="archive/20261012_0641.html">20261012_0641</a>
+<a href="archive/20261011_0615.html">20261011_0615</a>
+<a href="archive/20261010_0703.html">20261010_0703</a>
+<a href="archive/20261009_0739.html">20261009_0739</a>
+<a href="archive/20261008_0728.html">20261008_0728</a>
+<a href="archive/20261007_0655.html">20261007_0655</a>
+<a href="archive/20261006_0837.html">20261006_0837</a>
+<a href="archive/20261005_0613.html">20261005_0613</a>
+<a href="archive/20261004_0600.html">20261004_0600</a>
+<a href="archive/20261003_0655.html">20261003_0655</a>
+<a href="archive/20261002_0702.html">20261002_0702</a>
+<a href="archive/20261001_0650.html">20261001_0650</a>
+<a href="archive/20260930_0652.html">20260930_0652</a>
+<a href="archive/20260929_0745.html">20260929_0745</a>
+<a href="archive/20260928_0552.html">20260928_0552</a>
+<a href="archive/20260927_0552.html">20260927_0552</a>
+<a href="archive/20260926_0600.html">20260926_0600</a>
+<a href="archive/20260925_0601.html">20260925_0601</a>
+<a href="archive/20260924_0606.html">20260924_0606</a>
+<a href="archive/20260923_0548.html">20260923_0548</a>
+<a href="archive/20260922_0628.html">20260922_0628</a>
+<a href="archive/20260921_0512.html">20260921_0512</a>
+<a href="archive/20260920_0520.html">20260920_0520</a>
+<a href="archive/20260919_0527.html">20260919_0527</a>
+<a href="archive/20260918_0557.html">20260918_0557</a>
+<a href="archive/20260917_0556.html">20260917_0556</a>
+<a href="archive/20260916_0557.html">20260916_0557</a>
+<a href="archive/20260913_0515.html">20260913_0515</a>
+<a href="archive/20260912_0534.html">20260912_0534</a>
+<a href="archive/20260911_0526.html">20260911_0526</a>
+<a href="archive/20260910_0531.html">20260910_0531</a>
+<a href="archive/20260909_0536.html">20260909_0536</a>
+<a href="archive/20260908_0556.html">20260908_0556</a>
+<a href="archive/20260907_0505.html">20260907_0505</a>
+<a href="archive/20260906_0458.html">20260906_0458</a>
+<a href="archive/20260905_0516.html">20260905_0516</a>
+<a href="archive/20260904_0536.html">20260904_0536</a>
+<a href="archive/20260903_0538.html">20260903_0538</a>
+<a href="archive/20260902_0538.html">20260902_0538</a>
+<a href="archive/20260901_0708.html">20260901_0708</a>
+<a href="archive/20260831_0552.html">20260831_0552</a>
+<a href="archive/20260830_0532.html">20260830_0532</a>
+<a href="archive/20260829_1001.html">20260829_1001</a>
+<a href="archive/20260828_1027.html">20260828_1027</a>
+<a href="archive/20260827_0542.html">20260827_0542</a>
+<a href="archive/20260826_0332.html">20260826_0332</a>
+<a href="archive/20260825_0329.html">20260825_0329</a>
+<a href="archive/20260824_0322.html">20260824_0322</a>
+<a href="archive/20260823_0322.html">20260823_0322</a>
+<a href="archive/20260822_0326.html">20260822_0326</a>
+<a href="archive/20260821_0331.html">20260821_0331</a>
+<a href="archive/20260820_0326.html">20260820_0326</a>
+<a href="archive/20260819_0327.html">20260819_0327</a>
+<a href="archive/20260818_0328.html">20260818_0328</a>
+<a href="archive/20260817_0321.html">20260817_0321</a>
+<a href="archive/20260816_0321.html">20260816_0321</a>
+<a href="archive/20260815_0349.html">20260815_0349</a>
+<a href="archive/20260814_0356.html">20260814_0356</a>
+<a href="archive/20260813_0401.html">20260813_0401</a>
+<a href="archive/20260812_0401.html">20260812_0401</a>
+<a href="archive/20260811_0356.html">20260811_0356</a>
+<a href="archive/20260810_0333.html">20260810_0333</a>
+<a href="archive/20260809_0330.html">20260809_0330</a>
+<a href="archive/20260808_0353.html">20260808_0353</a>
+<a href="archive/20260807_0841.html">20260807_0841</a>
+<a href="archive/20260806_0427.html">20260806_0427</a>
+<a href="archive/20260805_0424.html">20260805_0424</a>
+<a href="archive/20260804_0427.html">20260804_0427</a>
+<a href="archive/20260803_0410.html">20260803_0410</a>
+<a href="archive/20260802_0410.html">20260802_0410</a>
+<a href="archive/20260801_0421.html">20260801_0421</a>
+<a href="archive/20260731_0414.html">20260731_0414</a>
+<a href="archive/20260730_0413.html">20260730_0413</a>
+<a href="archive/20260729_0417.html">20260729_0417</a>
+<a href="archive/20260728_0423.html">20260728_0423</a>
+<a href="archive/20260727_0411.html">20260727_0411</a>
+<a href="archive/20260725_0419.html">20260725_0419</a>
+<a href="archive/20260724_0413.html">20260724_0413</a>
+<a href="archive/20260723_0412.html">20260723_0412</a>
+<a href="archive/20260722_0419.html">20260722_0419</a>
+<a href="archive/20260721_0421.html">20260721_0421</a>
+<a href="archive/20260720_0408.html">20260720_0408</a>
+<a href="archive/20260719_0404.html">20260719_0404</a>
+<a href="archive/20260718_0406.html">20260718_0406</a>
+<a href="archive/20260717_0403.html">20260717_0403</a>
+<a href="archive/20260716_0409.html">20260716_0409</a>
+<a href="archive/20260715_0412.html">20260715_0412</a>
+<a href="archive/20260714_0415.html">20260714_0415</a>
+<a href="archive/20260713_0407.html">20260713_0407</a>
+<a href="archive/20260712_0406.html">20260712_0406</a>
+<a href="archive/20260711_0424.html">20260711_0424</a>
+<a href="archive/20260710_0448.html">20260710_0448</a>
+<a href="archive/20260709_0420.html">20260709_0420</a>
+<a href="archive/20260708_0450.html">20260708_0450</a>
+<a href="archive/20260707_0453.html">20260707_0453</a>
+<a href="archive/20260706_0414.html">20260706_0414</a>
+<a href="archive/20260705_0409.html">20260705_0409</a>
+<a href="archive/20260704_0415.html">20260704_0415</a>
+<a href="archive/20260703_0418.html">20260703_0418</a>
+<a href="archive/20260702_0449.html">20260702_0449</a>
+<a href="archive/20260701_0458.html">20260701_0458</a>
+<a href="archive/20260630_0450.html">20260630_0450</a>
+<a href="archive/20260629_0414.html">20260629_0414</a>
+<a href="archive/20260627_0447.html">20260627_0447</a>
+<a href="archive/20260626_0457.html">20260626_0457</a>
+<a href="archive/20260625_0449.html">20260625_0449</a>
+<a href="archive/20260624_0501.html">20260624_0501</a>
+<a href="archive/20260623_0532.html">20260623_0532</a>
+<a href="archive/20260622_0426.html">20260622_0426</a>
+<a href="archive/20260621_0416.html">20260621_0416</a>
+<a href="archive/20260620_0427.html">20260620_0427</a>
+<a href="archive/20260619_0541.html">20260619_0541</a>
+<a href="archive/20260618_0507.html">20260618_0507</a>
+<a href="archive/20260617_0543.html">20260617_0543</a>
+<a href="archive/20260616_0544.html">20260616_0544</a>
+<a href="archive/20260615_0418.html">20260615_0418</a>
+<a href="archive/20260614_0416.html">20260614_0416</a>
+<a href="archive/20260613_0503.html">20260613_0503</a>
+<a href="archive/20260612_0521.html">20260612_0521</a>
+<a href="archive/20260611_0526.html">20260611_0526</a>
+<a href="archive/20260610_0458.html">20260610_0458</a>
+<a href="archive/20260609_0512.html">20260609_0512</a>
+<a href="archive/20260608_0413.html">20260608_0413</a>
+<a href="archive/20260607_0410.html">20260607_0410</a>
+<a href="archive/20260606_0449.html">20260606_0449</a>
+<a href="archive/20260604_0550.html">20260604_0550</a>
+<a href="archive/20260603_0548.html">20260603_0548</a>
+<a href="archive/20260601_0408.html">20260601_0408</a>
+<a href="archive/20260531_0409.html">20260531_0409</a>
+<a href="archive/20260530_0508.html">20260530_0508</a>
+<a href="archive/20260529_0515.html">20260529_0515</a>
+<a href="archive/20260528_0503.html">20260528_0503</a>
+<a href="archive/20260527_0458.html">20260527_0458</a>
+<a href="archive/20260526_0424.html">20260526_0424</a>
+<a href="archive/20260524_0406.html">20260524_0406</a>
+<a href="archive/20260523_0444.html">20260523_0444</a>
+<a href="archive/20260522_0452.html">20260522_0452</a>
+<a href="archive/20260521_0500.html">20260521_0500</a>
+<a href="archive/20260520_0446.html">20260520_0446</a>
+<a href="archive/20260519_0425.html">20260519_0425</a>
+<a href="archive/20260518_0405.html">20260518_0405</a>
+<a href="archive/20260517_0402.html">20260517_0402</a>
+<a href="archive/20260516_0418.html">20260516_0418</a>
+<a href="archive/20260515_0440.html">20260515_0440</a>
+<a href="archive/20260514_0446.html">20260514_0446</a>
+<a href="archive/20260513_0430.html">20260513_0430</a>
+<a href="archive/20260512_0448.html">20260512_0448</a>
+<a href="archive/20260511_0400.html">20260511_0400</a>
+<a href="archive/20260510_0358.html">20260510_0358</a>
+<a href="archive/20260509_0408.html">20260509_0408</a>
+<a href="archive/20260508_0415.html">20260508_0415</a>
+<a href="archive/20260507_0423.html">20260507_0423</a>
+<a href="archive/20260506_0408.html">20260506_0408</a>
+<a href="archive/20260504_0356.html">20260504_0356</a>
+<a href="archive/20260503_0356.html">20260503_0356</a>
+<a href="archive/20260502_0406.html">20260502_0406</a>
+<a href="archive/20260501_0410.html">20260501_0410</a>
+<a href="archive/20260430_0411.html">20260430_0411</a>
+<a href="archive/20260429_0417.html">20260429_0417</a>
+<a href="archive/20260428_0409.html">20260428_0409</a>
+<a href="archive/20260427_0348.html">20260427_0348</a>
+<a href="archive/20260426_0345.html">20260426_0345</a>
+<a href="archive/20260425_0353.html">20260425_0353</a>
+<a href="archive/20260424_0407.html">20260424_0407</a>
+<a href="archive/20260423_0406.html">20260423_0406</a>
+<a href="archive/20260422_0404.html">20260422_0404</a>
+<a href="archive/20260421_0401.html">20260421_0401</a>
+<a href="archive/20260420_0342.html">20260420_0342</a>
+<a href="archive/20260419_0342.html">20260419_0342</a>
+<a href="archive/20260418_0359.html">20260418_0359</a>
+<a href="archive/20260417_0401.html">20260417_0401</a>
+<a href="archive/20260416_0404.html">20260416_0404</a>
+<a href="archive/20260415_0406.html">20260415_0406</a>
+<a href="archive/20260414_0407.html">20260414_0407</a>
+<a href="archive/20260413_0340.html">20260413_0340</a>
+<a href="archive/20260412_0336.html">20260412_0336</a>
+<a href="archive/20260411_0345.html">20260411_0345</a>
+<a href="archive/20260410_0403.html">20260410_0403</a>
+<a href="archive/20260409_0401.html">20260409_0401</a>
+<a href="archive/20260408_0359.html">20260408_0359</a>
+<a href="archive/20260407_0354.html">20260407_0354</a>
+<a href="archive/20260406_0334.html">20260406_0334</a>
+<a href="archive/20260405_0332.html">20260405_0332</a>
+<a href="archive/20260404_0339.html">20260404_0339</a>
+<a href="archive/20260403_0352.html">20260403_0352</a>
+<a href="archive/20260401_0356.html">20260401_0356</a>
+<a href="archive/20260331_0357.html">20260331_0357</a>
+<a href="archive/20260328_0342.html">20260328_0342</a>
+<a href="archive/20260326_0349.html">20260326_0349</a>
+<a href="archive/20260325_0355.html">20260325_0355</a>
+<a href="archive/20260324_0354.html">20260324_0354</a>
+<a href="archive/20260323_0327.html">20260323_0327</a>
+<a href="archive/20260322_0325.html">20260322_0325</a>
+<a href="archive/20260321_0339.html">20260321_0339</a>
+<a href="archive/20260320_0348.html">20260320_0348</a>
+<a href="archive/20260319_0354.html">20260319_0354</a>
+<a href="archive/20260318_0356.html">20260318_0356</a>
+<a href="archive/20260317_0354.html">20260317_0354</a>
+<a href="archive/20260316_1722.html">20260316_1722</a>
+<a href="archive/20260316_1646.html">20260316_1646</a>
+<a href="archive/20260316_0343.html">20260316_0343</a>
+<a href="archive/20260315_0341.html">20260315_0341</a>
+<a href="archive/20260314_0344.html">20260314_0344</a>
+<a href="archive/20260313_0352.html">20260313_0352</a>
+<a href="archive/20260312_0352.html">20260312_0352</a>
+<a href="archive/20260311_0347.html">20260311_0347</a>
+<a href="archive/20260310_0350.html">20260310_0350</a>
+<a href="archive/20260309_0338.html">20260309_0338</a>
+<a href="archive/20260308_0337.html">20260308_0337</a>
+<a href="archive/20260307_0347.html">20260307_0347</a>
+<a href="archive/20260306_0402.html">20260306_0402</a>
+<a href="archive/20260305_0348.html">20260305_0348</a>
+<a href="archive/20260304_0348.html">20260304_0348</a>
+<a href="archive/20260303_0348.html">20260303_0348</a>
+<a href="archive/20260302_0336.html">20260302_0336</a>
+<a href="archive/20260301_0339.html">20260301_0339</a>
+<a href="archive/20260228_0348.html">20260228_0348</a>
+<a href="archive/20260227_0354.html">20260227_0354</a>
+<a href="archive/20260226_0402.html">20260226_0402</a>
+<a href="archive/20260225_0404.html">20260225_0404</a>
+<a href="archive/20260224_0406.html">20260224_0406</a>
+<a href="archive/20260223_0338.html">20260223_0338</a>
+<a href="archive/20260222_0339.html">20260222_0339</a>
+<a href="archive/20260221_0345.html">20260221_0345</a>
+<a href="archive/20260220_0348.html">20260220_0348</a>
+<a href="archive/20260219_0358.html">20260219_0358</a>
+<a href="archive/20260218_0358.html">20260218_0358</a>
+<a href="archive/20260217_0343.html">20260217_0343</a>
+<a href="archive/20260216_0339.html">20260216_0339</a>
+<a href="archive/20260215_0338.html">20260215_0338</a>
+<a href="archive/20260213_0401.html">20260213_0401</a>
+<a href="archive/20260212_0404.html">20260212_0404</a>
+<a href="archive/20260210_0409.html">20260210_0409</a>
+<a href="archive/20260208_0339.html">20260208_0339</a>
+<a href="archive/20260207_0349.html">20260207_0349</a>
+<a href="archive/20260206_0347.html">20260206_0347</a>
+<a href="archive/20260205_0346.html">20260205_0346</a>
+<a href="archive/20260204_0354.html">20260204_0354</a>
+<a href="archive/20260202_0337.html">20260202_0337</a>
+<a href="archive/20260201_0333.html">20260201_0333</a>
+<a href="archive/20260131_0345.html">20260131_0345</a>
+<a href="archive/20260130_0341.html">20260130_0341</a>
+<a href="archive/20260129_0344.html">20260129_0344</a>
+<a href="archive/20260128_0341.html">20260128_0341</a>
+<a href="archive/20260127_0338.html">20260127_0338</a>
+<a href="archive/20260126_0330.html">20260126_0330</a>
+<a href="archive/20260125_0329.html">20260125_0329</a>
+<a href="archive/20260124_0337.html">20260124_0337</a>
+<a href="archive/20260123_0337.html">20260123_0337</a>
+<a href="archive/20260122_0343.html">20260122_0343</a>
+<a href="archive/20260121_0424.html">20260121_0424</a>
+<a href="archive/20260119_0329.html">20260119_0329</a>
+<a href="archive/20260118_0327.html">20260118_0327</a>
+<a href="archive/20260117_0332.html">20260117_0332</a>
+<a href="archive/20260116_0339.html">20260116_0339</a>
+<a href="archive/20260115_0334.html">20260115_0334</a>
+<a href="archive/20260114_0333.html">20260114_0333</a>
+<a href="archive/20260113_0334.html">20260113_0334</a>
+<a href="archive/20260112_0331.html">20260112_0331</a>
+<a href="archive/20260111_0329.html">20260111_0329</a>
+<a href="archive/20260110_0333.html">20260110_0333</a>
+<a href="archive/20260109_0334.html">20260109_0334</a>
+<a href="archive/20260108_0335.html">20260108_0335</a>
+<a href="archive/20260107_0330.html">20260107_0330</a>
+<a href="archive/20260106_0336.html">20260106_0336</a>
+<a href="archive/20260105_0328.html">20260105_0328</a>
+<a href="archive/20260104_0328.html">20260104_0328</a>
+<a href="archive/20260103_0325.html">20260103_0325</a>
+<a href="archive/20260102_0339.html">20260102_0339</a>
+<a href="archive/20260101_0329.html">20260101_0329</a>
+<a href="archive/20251231_0333.html">20251231_0333</a>
+<a href="archive/20251230_0332.html">20251230_0332</a>
+<a href="archive/20251229_0329.html">20251229_0329</a>
+<a href="archive/20251228_0332.html">20251228_0332</a>
+<a href="archive/20251227_0329.html">20251227_0329</a>
+<a href="archive/20251226_0330.html">20251226_0330</a>
+<a href="archive/20251225_0329.html">20251225_0329</a>
+<a href="archive/20251224_0331.html">20251224_0331</a>
+<a href="archive/20251223_0332.html">20251223_0332</a>
+<a href="archive/20251222_0328.html">20251222_0328</a>
+<a href="archive/20251221_0329.html">20251221_0329</a>
+<a href="archive/20251220_0330.html">20251220_0330</a>
+<a href="archive/20251219_0330.html">20251219_0330</a>
+<a href="archive/20251218_0345.html">20251218_0345</a>
+<a href="archive/20251217_0332.html">20251217_0332</a>
+<a href="archive/20251216_0333.html">20251216_0333</a>
+<a href="archive/20251215_0333.html">20251215_0333</a>
+<a href="archive/20251214_0327.html">20251214_0327</a>
+<a href="archive/20251212_0333.html">20251212_0333</a>
+<a href="archive/20251211_0331.html">20251211_0331</a>
+<a href="archive/20251210_0332.html">20251210_0332</a>
+<a href="archive/20251209_0331.html">20251209_0331</a>
+<a href="archive/20251208_0328.html">20251208_0328</a>
+<a href="archive/20251207_0327.html">20251207_0327</a>
+<a href="archive/20251206_0330.html">20251206_0330</a>
+<a href="archive/20251205_0331.html">20251205_0331</a>
+<a href="archive/20251204_0331.html">20251204_0331</a>
+<a href="archive/20251203_0333.html">20251203_0333</a>
+<a href="archive/20251202_0335.html">20251202_0335</a>
+<a href="archive/20251201_0328.html">20251201_0328</a>
+<a href="archive/20251130_0327.html">20251130_0327</a>
+<a href="archive/20251129_0328.html">20251129_0328</a>
+<a href="archive/20251128_0327.html">20251128_0327</a>
+<a href="archive/20251127_0327.html">20251127_0327</a>
+<a href="archive/20251126_0329.html">20251126_0329</a>
+<a href="archive/20251125_0327.html">20251125_0327</a>
+<a href="archive/20251124_0327.html">20251124_0327</a>
+<a href="archive/20251123_0326.html">20251123_0326</a>
+<a href="archive/20251122_0328.html">20251122_0328</a>
+<a href="archive/20251121_0328.html">20251121_0328</a>
+<a href="archive/20251120_0329.html">20251120_0329</a>
+<a href="archive/20251119_0328.html">20251119_0328</a>
+<a href="archive/20251118_0328.html">20251118_0328</a>
+<a href="archive/20251117_0326.html">20251117_0326</a>
+<a href="archive/20251116_0325.html">20251116_0325</a>
+<a href="archive/20251115_0327.html">20251115_0327</a>
+<a href="archive/20251114_0328.html">20251114_0328</a>
+<a href="archive/20251113_0330.html">20251113_0330</a>
+<a href="archive/20251112_0329.html">20251112_0329</a>
+<a href="archive/20251111_0328.html">20251111_0328</a>
+<a href="archive/20251110_0325.html">20251110_0325</a>
+<a href="archive/20251109_0326.html">20251109_0326</a>
+<a href="archive/20251108_0328.html">20251108_0328</a>
+<a href="archive/20251107_0328.html">20251107_0328</a>
+<a href="archive/20251106_0329.html">20251106_0329</a>
+<a href="archive/20251105_0326.html">20251105_0326</a>
+<a href="archive/20251104_0327.html">20251104_0327</a>
+<a href="archive/20251103_0324.html">20251103_0324</a>
+<a href="archive/20251102_0326.html">20251102_0326</a>
+<a href="archive/20251101_0324.html">20251101_0324</a>
+<a href="archive/20251031_0328.html">20251031_0328</a>
+<a href="archive/20251030_0330.html">20251030_0330</a>
+<a href="archive/20251029_0329.html">20251029_0329</a>
+<a href="archive/20251028_0329.html">20251028_0329</a>
+<a href="archive/20251027_0322.html">20251027_0322</a>
+<a href="archive/20251026_0327.html">20251026_0327</a>
+<a href="archive/20251025_0331.html">20251025_0331</a>
+<a href="archive/20251024_0329.html">20251024_0329</a>
+<a href="archive/20251023_0329.html">20251023_0329</a>
+<a href="archive/20251022_0330.html">20251022_0330</a>
+<a href="archive/20251021_0331.html">20251021_0331</a>
+<a href="archive/20251020_0328.html">20251020_0328</a>
+<a href="archive/20251019_0321.html">20251019_0321</a>
+<a href="archive/20251018_0327.html">20251018_0327</a>
+<a href="archive/20251017_0320.html">20251017_0320</a>
+<a href="archive/20251016_0328.html">20251016_0328</a>
+<a href="archive/20251015_0328.html">20251015_0328</a>
+<a href="archive/20251014_0323.html">20251014_0323</a>
+<a href="archive/20251011_0328.html">20251011_0328</a>
+<a href="archive/20251010_0330.html">20251010_0330</a>
+<a href="archive/20251009_0321.html">20251009_0321</a>
+<a href="archive/20251008_0343.html">20251008_0343</a>
+<a href="archive/20251007_0353.html">20251007_0353</a>
+<a href="archive/20251006_0325.html">20251006_0325</a>
+<a href="archive/20251005_0350.html">20251005_0350</a>
+<a href="archive/20251004_0352.html">20251004_0352</a>
+<a href="archive/20251003_0352.html">20251003_0352</a>
+<a href="archive/20251002_0356.html">20251002_0356</a>
+<a href="archive/20251001_0321.html">20251001_0321</a>
+<a href="archive/20250925_0335.html">20250925_0335</a>
+<a href="archive/20250924_0350.html">20250924_0350</a>
+<a href="archive/20250923_0348.html">20250923_0348</a>
+<a href="archive/20250922_0346.html">20250922_0346</a>
+<a href="archive/20250921_0345.html">20250921_0345</a>
+<a href="archive/20250920_0342.html">20250920_0342</a>
+<a href="archive/20250919_0346.html">20250919_0346</a>
+<a href="archive/20250918_0342.html">20250918_0342</a>
+<a href="archive/20250917_0336.html">20250917_0336</a>
+<a href="archive/20250916_0333.html">20250916_0333</a>
+<a href="archive/20250915_0333.html">20250915_0333</a>
+<a href="archive/20250914_0328.html">20250914_0328</a>
+<a href="archive/20250913_0322.html">20250913_0322</a>
+<a href="archive/20250912_0335.html">20250912_0335</a>
+<a href="archive/20250911_0337.html">20250911_0337</a>
+<a href="archive/20250910_0338.html">20250910_0338</a>
+<a href="archive/20250909_0341.html">20250909_0341</a>
+<a href="archive/20250908_0342.html">20250908_0342</a>
+<a href="archive/20250907_0333.html">20250907_0333</a>
+<a href="archive/20250906_0350.html">20250906_0350</a>
+<a href="archive/20250905_0319.html">20250905_0319</a>
+<a href="archive/20250904_0323.html">20250904_0323</a>
+<a href="archive/20250903_0355.html">20250903_0355</a>
+<a href="archive/20250902_0325.html">20250902_0325</a>
+<a href="archive/20250901_0355.html">20250901_0355</a>
+<a href="archive/20250831_0355.html">20250831_0355</a>
+<a href="archive/20250830_0356.html">20250830_0356</a>
+<a href="archive/20250829_0355.html">20250829_0355</a>
+<a href="archive/20250828_0333.html">20250828_0333</a>
+<a href="archive/20250827_1654.html">20250827_1654</a>
+<a href="archive/20250827_1602.html">20250827_1602</a>
+<a href="archive/20250827_1557.html">20250827_1557</a>
+<a href="archive/20250827_0320.html">20250827_0320</a>
+<a href="archive/20250826_0320.html">20250826_0320</a>
+<a href="archive/20250825_1752.html">20250825_1752</a>
+<a href="archive/20250825_1709.html">20250825_1709</a>
+<a href="archive/20250825_1652.html">20250825_1652</a>
+<a href="archive/20250825_1647.html">20250825_1647</a>
+<a href="archive/20250825_1645.html">20250825_1645</a>
+<a href="archive/20250825_1631.html">20250825_1631</a>
+<a href="archive/20250825_1606.html">20250825_1606</a>
+<a href="archive/20250825_1559.html">20250825_1559</a>
+<a href="archive/20250825_1558.html">20250825_1558</a>
+<a href="archive/20250825_1556.html">20250825_1556</a>
+<a href="archive/20250825_1531.html">20250825_1531</a>
+<a href="archive/20250825_1525.html">20250825_1525</a>
+<a href="archive/20250825_1516.html">20250825_1516</a>
+<a href="archive/20250825_1450.html">20250825_1450</a>
+<a href="archive/20250825_1444.html">20250825_1444</a>
+<a href="archive/20250825_1438.html">20250825_1438</a>
+<a href="archive/20250825_1414.html">20250825_1414</a>
+<a href="archive/20250825_1413.html">20250825_1413</a>
+<a href="archive/20250825_1410.html">20250825_1410</a>
+<a href="archive/20250825_1408.html">20250825_1408</a>
+<a href="archive/20250825_1405.html">20250825_1405</a>
+<a href="archive/20250825_1401.html">20250825_1401</a>
+<a href="archive/20250825_1355.html">20250825_1355</a>
+<a href="archive/20250825_1347.html">20250825_1347</a>
+<a href="archive/20250825_1345.html">20250825_1345</a>
+<a href="archive/20250825_1344.html">20250825_1344</a>
+<a href="archive/20250825_1343.html">20250825_1343</a>
+<a href="archive/20250825_1340.html">20250825_1340</a>
+<a href="archive/20250825_1339.html">20250825_1339</a>
+<a href="archive/20250825_1333.html">20250825_1333</a>
+<a href="archive/20250825_1323.html">20250825_1323</a>
+<a href="archive/20250825_1317.html">20250825_1317</a>
+<a href="archive/20250825_1243.html">20250825_1243</a>
+<a href="archive/20250824_0342.html">20250824_0342</a>
+<a href="archive/20250823_0343.html">20250823_0343</a>
+<a href="archive/20250823_0142.html">20250823_0142</a>
+<a href="archive/20250822_2331.html">20250822_2331</a>
+<a href="archive/20250822_2308.html">20250822_2308</a>
+<a href="archive/20250822_2258.html">20250822_2258</a>
+<a href="archive/20250822_2241.html">20250822_2241</a>
+<a href="archive/20250822_2228.html">20250822_2228</a>
+<a href="archive/20250822_2206.html">20250822_2206</a>
+<a href="archive/20250822_2147.html">20250822_2147</a>
+<a href="archive/20250822_2111.html">20250822_2111</a>
+<a href="archive/20250822_1259.html">20250822_1259</a>
+<a href="archive/20250822_1233.html">20250822_1233</a>
+<a href="archive/20250822_1229.html">20250822_1229</a>
+<a href="archive/20250822_1223.html">20250822_1223</a>
+<a href="archive/20250822_1210.html">20250822_1210</a>
+<a href="archive/20250822_1201.html">20250822_1201</a>
+<a href="archive/20250822_1111.html">20250822_1111</a>
+<a href="archive/20250822_1058.html">20250822_1058</a>
+<a href="archive/20250822_1052.html">20250822_1052</a>
+<a href="archive/20250822_1045.html">20250822_1045</a>
+<a href="archive/20250822_0657.html">20250822_0657</a>
+<a href="archive/20250822_0553.html">20250822_0553</a></div>
+    </details>
+    <div class="footer">Generated by arxiv-tracker</div>
+  </div>
+</body></html>
